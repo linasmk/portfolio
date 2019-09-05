@@ -1,0 +1,56 @@
+/* ========== My Stack ========== */
+.my_stack {
+	width: 100%;
+	background: linear-gradient(190deg, rgba($darkBlue, .4), 
+		        rgba(#000067, .8) 70%);
+	padding: 2rem 0;
+}
+.my_stack h2 {
+	text-align: center;
+	color: $white;
+	text-align: center;
+	font-size: 4rem;
+	margin: 4rem 2.5rem;
+}
+.my_stack__icons {
+	@include containerWidth_sm;
+	@include horizontalFlex(space-around, center)
+}
+.html_icon, .css_icon, .js_icon, .sass_icon,
+.npm_icon, .gulp_icon, .ai_icon, .php_icon,
+ .wp_icon, .svg_icon {
+	width: 40%;
+	margin: 25px 0;
+}
+@media screen and (min-width: 480px) {
+	.html_icon, .css_icon, .js_icon, .sass_icon,
+	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
+ 	.wp_icon, .svg_icon {
+		width: 26%;
+		margin: 25px 0;
+	}
+}
+@media screen and (min-width: 768px) {
+	.my_stack__icons {
+		@include containerWidth_md;
+	}
+	.html_icon, .css_icon, .js_icon, .sass_icon,
+	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
+ 	.wp_icon, .svg_icon {
+		width: 21%;
+		margin: 25px 0;
+	}
+}
+@media screen and (min-width: 998px) {
+	.html_icon, .css_icon, .js_icon, .sass_icon,
+	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
+ 	.wp_icon, .svg_icon {
+		width: 17%;
+		margin: 25px 0;
+	}
+}
+@media screen and (min-width: 2000px) {
+	.my_stack__icons {
+		@include containerWidth_lg;
+	}
+}

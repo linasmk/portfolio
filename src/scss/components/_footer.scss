@@ -1,0 +1,11 @@
+/* =========== Footer =========== */
+footer {
+	height: 10vh;
+	background: linear-gradient(190deg, rgba($veryDarkBlue, .8), 
+		        rgba(#000034, .8) 70%);
+	@include verticalFlex(center, center);
+	padding: 10rem 2rem;
+}
+footer p {
+	color: $white;
+}

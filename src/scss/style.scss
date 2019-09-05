@@ -1,0 +1,88 @@
+/* =========== Imports =========== */
+
+/*  Globals  */
+@import "globals/normalize";
+@import "globals/variables";
+@import "globals/mixins";
+@import "globals/extends";
+
+/*  Components  */
+@import "components/header";
+@import "components/hero";
+@import "components/about_me";
+@import "components/my_stack";
+@import "components/projects";
+@import "components/contact";
+@import "components/footer";
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
+/* Font Awesome */
+@import "plugins/font_awesome/fontawesome.scss";
+@import "plugins/font_awesome/solid.scss";
+@import "plugins/font_awesome/brands.scss";
+@import "plugins/font_awesome/regular.scss";
+
+/* ---- Primary style ----- */
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+html {
+	font-size: 62.5%;
+}
+body {
+	background-color: $white;
+	font: {
+		size: 1.6rem;
+		family: $primary-font; /* variables inside partials > _variables.scss */
+	}
+	color: $black;
+}
+a {
+	text-decoration: none;
+}
+.link {
+	color: $darkBlue;
+}
+img {
+	max-width: 100%;
+	@extend  %noHighlightAndSelect;
+}
+p {
+	line-height: 2rem;
+}
+/* ---- JS helper classes ----- */
+.fade_in {
+	opacity: 0;
+	transition: opacity .5s ease-in;
+}
+.slide_out {
+	top: 100%;
+	opacity: 0;
+	transition: top 1s ease-in, opacity 1s ease-in;
+}
+.run {
+	top: 40%;
+	opacity: 1;
+	@extend %noHighlightAndSelect;
+}
+.fade_in.appear {
+	opacity: 1;
+}
+.nav-scrolled {
+	background: rgba($paleOrange, .7);
+	&::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: linear-gradient(330deg, rgba($darkBlue, .5) 1%,
+	            rgba($black, .4),
+	            rgba($darkBlue, .5) 99%
+		);
+	border-radius: 30px;
+	}
+}
+

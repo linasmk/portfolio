@@ -1,0 +1,21 @@
+%noHighlightAndSelect {
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+%ulStyle {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+%txtGradientHeading {
+	background:
+	 linear-gradient(0deg,
+		$darkBlue,
+		rgba($paleOrange, 1));
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+}
+
+

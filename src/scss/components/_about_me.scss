@@ -1,0 +1,36 @@
+/* ========== About Me ========== */
+.about_me {
+	@include containerWidth_sm;
+	padding: 2rem 0;
+	transition: transform 1s;
+}
+.about_me h2 {
+	color: $black;
+	@extend %txtGradientHeading;
+	text-align: center;
+	font-size: 4rem;
+	margin: 4rem 0;
+}
+.about_me p {
+	font-size: 2rem;
+	margin: 3rem 0;
+	line-height: 3rem;
+}
+@media screen and (min-width: 768px) {
+	.about_me {
+		@include containerWidth_md;
+	}
+}
+@media screen and (min-width: 1290px) {
+	.about_me h2 {
+		margin: 4rem 0;
+	}
+	.about_me p {
+		margin: 3rem 0;
+	}
+}
+@media screen and (min-width: 2000px) {
+	.about_me {
+		@include containerWidth_lg;
+	}
+}

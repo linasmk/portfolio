@@ -1,0 +1,59 @@
+/* =========== Navigation ============ */ 
+@mixin center($xy:xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  @else if $xy == x {
+    left: 50%;
+    right: auto;
+   transform: translateX(-50%);
+  }
+  @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+}
+/* ------------------------------------------------ */
+@mixin verticalFlex($position, $alignment) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: $position;
+  align-items: $alignment;
+}
+@mixin horizontalFlex($position, $alignment) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: $position;
+  align-items: $alignment;
+}
+@mixin backgroundIMG($path, $size, $position) {
+  background-image: $path;
+  background-size: $size;
+  background-position: $position;
+  background-repeat: no-repeat;
+}
+@mixin containerWidth {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+}
+@mixin containerWidth_sm {
+  width: 80%;
+  margin: 0 auto;
+}
+@mixin containerWidth_md {
+  width: 70%;
+  margin: 0 auto;
+}
+@mixin containerWidth_lg {
+  width: 60%;
+  margin: 0 auto;
+}
+
