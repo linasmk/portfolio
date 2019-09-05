@@ -1,1 +1,4 @@
 src/gulp-dev/node_modules
+
+# Windows thumbnail cache files
+Thumbs.db
