@@ -1,22 +1,25 @@
 const faders = document.querySelectorAll('.fade_in');
 const slideOut = document.querySelector('.slide_out');
-slideOut.classList.add('run');
+
+if (slideOut) {
+	slideOut.classList.add('run');
+}
 const appearOnScrollOptions = {
-	threshold: .1	
+	threshold: .1
 };
-const appearOnScrollObserver = 
-new IntersectionObserver(function(
-	entries, appearOnScrollObserver) {
-	entries.forEach(entry => {
-		if(!entry.isIntersecting) {
-			return;
-		} else {
-			entry.target.classList.add('appear');
-			appearOnScrollObserver.unobserve(entry.target);
-		}
-	});
-}, 
-appearOnScrollOptions);
+const appearOnScrollObserver =
+	new IntersectionObserver(function (
+		entries, appearOnScrollObserver) {
+		entries.forEach(entry => {
+			if (!entry.isIntersecting) {
+				return;
+			} else {
+				entry.target.classList.add('appear');
+				appearOnScrollObserver.unobserve(entry.target);
+			}
+		});
+	},
+		appearOnScrollOptions);
 
 faders.forEach(fader => {
 	appearOnScrollObserver.observe(fader);
@@ -29,22 +32,22 @@ const lazyImagesOptions = {
 };
 function preloadImage(img) {
 	const src = img.getAttribute("data-src");
-	if(!src) {
+	if (!src) {
 		return;
-	} 
+	}
 	img.src = src;
 }
-const lazyImagesObserver = 
-new IntersectionObserver((entries, lazyImagesObserver) => {
-	entries.forEach(entry => {
-		if(!entry.isIntersecting) {
-			return;
-		} else {
-			preloadImage(entry.target);
-			lazyImagesObserver.unobserve(entry.target);
-		}
-	});
-}, lazyImagesOptions);
+const lazyImagesObserver =
+	new IntersectionObserver((entries, lazyImagesObserver) => {
+		entries.forEach(entry => {
+			if (!entry.isIntersecting) {
+				return;
+			} else {
+				preloadImage(entry.target);
+				lazyImagesObserver.unobserve(entry.target);
+			}
+		});
+	}, lazyImagesOptions);
 
 lazyImages.forEach(image => {
 	lazyImagesObserver.observe(image);

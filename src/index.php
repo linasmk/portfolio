@@ -1,3 +1,5 @@
+<?php $page = 'home'; ?>
+
 <?php include("includes/header.php"); ?>
 <article id="hero" class="hero">
 	<div class="hero_inner__wrapper">
@@ -13,11 +15,12 @@
 </article>
 <article id="about_me" class="about_me">
 	<h2 class="fade_in">About Me</h2>
-	<p class="fade_in">There are no preliminary data on why I started web development a little bit later, in my 30s, but most likely I was afraid of <a class="link" href="https://www.reddit.com/r/geek/comments/173dcn/internet_explorer_vs_murder_rate/" target="_blank">Internet Explorer</a>.</p>
-	<p class="fade_in">There are also no explicit estimates on how many times I crashed in front of my computer, while trying to do things in a proper way. However web development gradually turned into my working time, leisure time and even into my way of thinking.</p>
-	<p class="fade_in">I have recently graduated from <a class="link" href="https://www.baaa.dk/programmes/ap-degree/multimedia-design/" target="_blank">Business Academy Aarhus</a> as a fresh front-end developer. For the past several years I lived and continue my living in Aarhus, Denmark. This website is my call to action for the prospective employers around Aarhus or across Denmark.</p>
-	<p class="fade_in">If the link to my website somehow appeared in you mailbox, it means I have a particular interest in working at you company.</p>
-	<p class="fade_in">You are always welcome to contact me or check my <a href="https://github.com/linasmk">GitHub profile</a>. My page is being updated constantly and if there is a mismatch between the obtained and required skills, you are welcome to come back later and check it again.</p>
+	<p class="fade_in intro_p">There are no preliminary data on why I started web development only in 2017,	 but most likely I was afraid of <a class="link" href="https://www.reddit.com/r/geek/comments/173dcn/internet_explorer_vs_murder_rate/" target="_blank">Internet Explorer</a>.</p>
+	<h3>Hello and nice to meet you! I am Linas and I love to make simple and beautiful websites for medium and small-sized businesses.</h3>
+
+	<p class="fade_in">I am a passionate front-end web developer with a soon-to-be 3 years of freelancing experience. I am educated at <a class="link" href="https://www.baaa.dk/programmes/ap-degree/multimedia-design/" target="_blank">Business Academy Aarhus</a> and I continue to live in Denmark, but I provide my services across the EU and beyond.</p>
+	
+	<p class="fade_in">You are always welcome to contact me or check my <a href="https://github.com/linasmk">GitHub profile</a>.</p>
 </article>
 <article id="my_stack" class="my_stack">
 	<h2 class="fade_in">My Stack</h2>
@@ -38,11 +41,9 @@
 <article id="projects" class="projects"> 
 	<section class="projects_content">
 		<h2 class="fade_in">Projects</h2>
-		<p class="fade_in">My designes, code structures and front-end applications are primarily applied to the WordPress Content Management system. This helps me to achieve goals, I wouldn't be capable to achieve without a firm back-end knowledge, which is a well-rounded and complete website.</p>
+		<p class="fade_in">My designes, code structures and front-end applications are build by using SCSS, Gulp.js, JavaScript and PHP.</p>
 
-		<p class="fade_in">WordPress gives me opportunities to understand the nuts and bolts of website structure, coding practises and workings of SEO. I try to develope my own themes with a minimal use of plugins, by implementing clean code. I try to avoid premium themes and I never use multi-puspose page buiders.</p>
-
-		<p class="fade_in">My workflow of building a WordPress site consists of kick starting a Gulp file, preprocessing SCSS to CSS, minifying JS files, making sure technical SEO is up to date and website's loading speed is optimized.</p>
+		<p class="fade_in">I am also a big fan of building WordPress sites from scratch, by using my own handwritten code. WordPress gives me opportunities to understand the nuts and bolts of website structure, coding practises and workings of SEO. I try to develope my own themes with a minimal use of plugins, by implementing clean code. I try to avoid premium themes and I never use multi-purpose page buiders.</p>
 	</section>
 	<div class="project_background">
 		<div class="carousel">
@@ -52,7 +53,7 @@
 					<section class="slide_content">
 						<section class="project_description">
 							<h3 class="fade_in">Etno Dvaras</h3>
-							<p class="fade_in">Granny theme application for the Lithuanian restaurants chain Etno Dvaras.</p>
+							<p class="fade_in">A website for the Lithuanian restaurants chain Etno Dvaras.</p>
 						</section>
 						
 						<img class="mobile_screen fade_in" data-src="img/smartphone_etnodvaras.png" alt="Etnodvaras: mobile screen">
@@ -66,14 +67,14 @@
 					<div class="slide_content">
 						<section class="project_description">
 							<h3 class="fade_in">Art of Ink</h3>
-							<p class="fade_in">A presentational website's prototype for the Tattoo shop located in Aarhus, Denmark.</p>
+							<p class="fade_in">A presentational website for the Tattoo shop located in Aarhus, Denmark.</p>
 						</section>
 						
 						<img class="mobile_screen fade_in" data-src="img/smartphone_artofink.png" alt="Art of Ink: mobile screen">
 						<img class="tablet_screen fade_in" data-src="img/tablet_artofink.png" alt="Art of Ink: tablet screen">
 						<img class="desktop_screen fade_in" data-src="img/laptop_artofink.png" alt="Art of Ink: desktop screen">
 					</div>
-					<a href="http://mackonis.dk/art_of_ink/" class="project_link" target="_blank">View project</a>
+					<a href="http://www.artofink.dk/" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
 
 				<div class="slide">
@@ -90,12 +91,27 @@
 					<a href="http://www.bravenewwebsites.com" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
 
+				<div class="slide">
+					<section class="slide_content">
+						<section class="project_description">
+							<h3 class="fade_in">Pro Team Works</h3>
+							<p class="fade_in">A website dedicated to the window and gutter cleaning company, located in Chicago.</p>
+						</section>
+						
+						<img class="mobile_screen fade_in" data-src="img/smartphone_ptw.png" alt="Pro Team Works: mobile screen">
+						<img class="tablet_screen fade_in" data-src="img/tablet_ptw.png" alt="Pro Team Works: tablet screen">
+						<img class="desktop_screen fade_in" data-src="img/laptop_ptw.png" alt="Pro Team Works: desktop screen">
+					</section>
+					<a href="https://proteamworks.com/" class="project_link" target="_blank">View project</a>
+				</div><!-- End of slide -->
+
 			</div><!-- End of slider -->
 			<div class="controls">
 				<span class="arrow left"><img src="img/left_arrow.png" alt="Left arrow"></span>
 				<span class="arrow right"><img src="img/right_arrow.png" alt="Right arrow"></span>
 				<ul class="slide_indicators">
 					<li class="selected"></li>
+					<li></li>
 					<li></li>
 					<li></li>
 				</ul>
@@ -110,12 +126,12 @@
 <article id="contact" class="contact">
 	<section class="contact_content">
 		<h2 class="fade_in">Contact</h2>
-		<p class="fade_in">You should definitely contact me if you are an employer seeking for a junior front-end developer with a growing WordPress and SEO skillset under his belt. Currently, I try to freelance and sharpen my skills as much as possible. Thus, you are also welcome to contact me if you have any ad hoc projects or if you need any help in making fast loading and neatly written WordPress site for your business.</p>
+		<p class="fade_in">You should definitely contact me if you are an employer seeking for a junior front-end developer with a growing responsive design, JavasScript, React.js, WordPress and SEO skillset under his belt. Currently, I try to freelance and sharpen my skills as much as possible. Thus, you are also welcome to contact me if you have any ad hoc projects or if you need any help in making fast loading and neatly written site for your business.</p>
 	</section>
 	<div class="contact_background">
 		<section class="contact_details fade_in">
-			<a href="tel:+45-42-33-20-88" rel="nofollow"><span class="danish_flag"></span>+45 42 33 20 88</a>
-			<a href="tel:+370-672-48029" rel="nofollow"><span class="lithuanian_flag"></span>+370 672 48029</a>
+			<a href="tel:+45-42-33-20-88"><span class="danish_flag"></span>+45 42 33 20 88</a>
+			<!-- <a href="tel:+370-672-48029" rel="nofollow"><span class="lithuanian_flag"></span>+370 672 48029</a> -->
 			<a href="mailto:linas.mackonis@gmail.com"><span class="email"></span>Email Me</a>  
 		</section>
 	</div>
