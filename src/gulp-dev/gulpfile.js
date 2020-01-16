@@ -57,7 +57,8 @@ function concatScripts() {
   return src([
     `${root}src/js/carousel.js`,
     `${root}src/js/lazy.js`,
-    `${root}src/js/script.js`
+    `${root}src/js/script.js`,
+    `${root}src/js/erot13.js`
   ])
     .pipe(sourcemaps.init())
     .pipe(concat("main.js"))
@@ -66,7 +67,7 @@ function concatScripts() {
 }
 
 function minifyJS(done) {
-  jsFiles.map(function(entry) {
+  jsFiles.map(function (entry) {
     return browserify({
       entries: [jsFolder + entry]
     })

@@ -17,5 +17,16 @@
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
 }
+%txtGradientHeading_blue {
+	background:
+	 linear-gradient(
+		rgba($darkBlue, 1),
+		rgba($darkBlue, .6),
+		rgba($darkBlue, 1)
+		);
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+}
+
 
 

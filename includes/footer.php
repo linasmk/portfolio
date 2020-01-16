@@ -9,7 +9,7 @@
   <?php 
     global $page;
     if($page == 'home') {
-      echo '<script src="src/js/main.js"></script>';
+      echo '<script src="js/main.min.js"></script>';
     } ?>
 </body>
 </html>

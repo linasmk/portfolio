@@ -1,6 +1,7 @@
-<?php $page = 'home'; ?>
 
-<?php include("includes/header.php"); ?>
+<?php header("Cache-Control: no-cache");
+$page = 'home';
+ include("includes/header.php"); ?>
 <article id="hero" class="hero">
 	<div class="hero_inner__wrapper">
 		<section class="hero_text fade_in">
@@ -15,8 +16,8 @@
 </article>
 <article id="about_me" class="about_me">
 	<h2 class="fade_in">About Me</h2>
-	<p class="fade_in intro_p">There are no preliminary data on why I started web development only in 2017,	 but most likely I was afraid of <a class="link" href="https://www.reddit.com/r/geek/comments/173dcn/internet_explorer_vs_murder_rate/" target="_blank">Internet Explorer</a>.</p>
-	<h3>Hello and nice to meet you! I am Linas and I love to make simple and beautiful websites for medium and small-sized businesses.</h3>
+	<p class="fade_in intro_p">Some introductions should be like a miniskirt, short enough to maintain the interest, but long enough to cover the subject.</p>
+	<h3>Hello and nice to meet you! I am Linas and I love to make simple and beautiful websites, for medium and small-sized businesses.</h3>
 
 	<p class="fade_in">I am a passionate front-end web developer with a soon-to-be 3 years of freelancing experience. I am educated at <a class="link" href="https://www.baaa.dk/programmes/ap-degree/multimedia-design/" target="_blank">Business Academy Aarhus</a> and I continue to live in Denmark, but I provide my services across the EU and beyond.</p>
 	
@@ -41,25 +42,23 @@
 <article id="projects" class="projects"> 
 	<section class="projects_content">
 		<h2 class="fade_in">Projects</h2>
-		<p class="fade_in">My designes, code structures and front-end applications are build by using SCSS, Gulp.js, JavaScript and PHP.</p>
-
-		<p class="fade_in">I am also a big fan of building WordPress sites from scratch, by using my own handwritten code. WordPress gives me opportunities to understand the nuts and bolts of website structure, coding practises and workings of SEO. I try to develope my own themes with a minimal use of plugins, by implementing clean code. I try to avoid premium themes and I never use multi-purpose page buiders.</p>
+		<p class="fade_in">My designs, code structures and front-end applications are build by using SCSS, Gulp.js, JavaScript, PHP and WordPress. Please find some of my projects below.</p>
 	</section>
 	<div class="project_background">
 		<div class="carousel">
 			<div class="slider">
 
 				<div class="slide">
-					<section class="slide_content">
+					<div class="slide_content">
 						<section class="project_description">
 							<h3 class="fade_in">Etno Dvaras</h3>
 							<p class="fade_in">A website for the Lithuanian restaurants chain Etno Dvaras.</p>
 						</section>
-						
-						<img class="mobile_screen fade_in" data-src="img/smartphone_etnodvaras.png" alt="Etnodvaras: mobile screen">
-						<img class="tablet_screen fade_in" data-src="img/tablet_etnodvaras.png" alt="Etnodvaras: tablet screen">
-						<img class="desktop_screen fade_in" data-src="img/laptop_etnodvaras.png" alt="Etnodvaras: desktop screen">
-					</section>
+						<picture>
+							<source media="(min-width: 300px)" srcset="img/cases/etnodvaras300x300.webp" sizes="300px">
+							<img class="img_screen fade_in" data-src="img/cases/etnodvaras300x300.webp" alt="Etnodvaras">
+						</picture>
+					</div>
 					<a href="https://etnodvaras.lt/" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
 
@@ -70,9 +69,10 @@
 							<p class="fade_in">A presentational website for the Tattoo shop located in Aarhus, Denmark.</p>
 						</section>
 						
-						<img class="mobile_screen fade_in" data-src="img/smartphone_artofink.png" alt="Art of Ink: mobile screen">
-						<img class="tablet_screen fade_in" data-src="img/tablet_artofink.png" alt="Art of Ink: tablet screen">
-						<img class="desktop_screen fade_in" data-src="img/laptop_artofink.png" alt="Art of Ink: desktop screen">
+						<picture>
+							<source media="(min-width: 300px)" srcset="img/cases/etnodvaras300x300.webp" sizes="300px">
+							<img class="img_screen fade_in" data-src="img/cases/etnodvaras300x300.webp" alt="Etnodvaras">
+						</picture>
 					</div>
 					<a href="http://www.artofink.dk/" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
@@ -84,24 +84,26 @@
 							<p class="fade_in">My own developed WP restaurant theme dedicated to the Madu pub, located in the centre of Vilnius.</p>
 						</section>
 						
-						<img class="mobile_screen fade_in" data-src="img/smartphone_madu.png" alt="Madu: mobile screen">
-						<img class="tablet_screen fade_in" data-src="img/tablet_madu.png" alt="Madu: tablet screen">
-						<img class="desktop_screen fade_in" data-src="img/laptop_madu.png" alt="Madu: desktop screen">
+						<picture>
+							<source media="(min-width: 300px)" srcset="img/cases/etnodvaras300x300.webp" sizes="300px">
+							<img class="img_screen fade_in" data-src="img/cases/etnodvaras300x300.webp" alt="Etnodvaras">
+						</picture>
 					</div>
 					<a href="http://www.bravenewwebsites.com" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
 
 				<div class="slide">
-					<section class="slide_content">
+					<div class="slide_content">
 						<section class="project_description">
 							<h3 class="fade_in">Pro Team Works</h3>
 							<p class="fade_in">A website dedicated to the window and gutter cleaning company, located in Chicago.</p>
 						</section>
 						
-						<img class="mobile_screen fade_in" data-src="img/smartphone_ptw.png" alt="Pro Team Works: mobile screen">
-						<img class="tablet_screen fade_in" data-src="img/tablet_ptw.png" alt="Pro Team Works: tablet screen">
-						<img class="desktop_screen fade_in" data-src="img/laptop_ptw.png" alt="Pro Team Works: desktop screen">
-					</section>
+						<picture>
+							<source media="(min-width: 300px)" srcset="img/cases/etnodvaras300x300.webp" sizes="300px">
+							<img class="img_screen fade_in" data-src="img/cases/etnodvaras300x300.webp" alt="Etnodvaras">
+						</picture>
+					</div>
 					<a href="https://proteamworks.com/" class="project_link" target="_blank">View project</a>
 				</div><!-- End of slide -->
 
@@ -126,13 +128,14 @@
 <article id="contact" class="contact">
 	<section class="contact_content">
 		<h2 class="fade_in">Contact</h2>
-		<p class="fade_in">You should definitely contact me if you are an employer seeking for a junior front-end developer with a growing responsive design, JavasScript, React.js, WordPress and SEO skillset under his belt. Currently, I try to freelance and sharpen my skills as much as possible. Thus, you are also welcome to contact me if you have any ad hoc projects or if you need any help in making fast loading and neatly written site for your business.</p>
+		<p class="fade_in">You should definitely contact me if you are seeking for a front-end developer with a responsive design, JavasScript, WordPress and SEO skillset under his belt. Do not hesitate to get in touch for a long-term or small ad hoc projects or if you need any help in making fast loading and neatly written site for your business.</p>
 	</section>
 	<div class="contact_background">
 		<section class="contact_details fade_in">
 			<a href="tel:+45-42-33-20-88"><span class="danish_flag"></span>+45 42 33 20 88</a>
 			<!-- <a href="tel:+370-672-48029" rel="nofollow"><span class="lithuanian_flag"></span>+370 672 48029</a> -->
-			<a href="mailto:linas.mackonis@gmail.com"><span class="email"></span>Email Me</a>  
+			<!-- <a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> -->
+			<a href="includes/mailhandler.php"><span class="email"></span>Email Me</a>  
 		</section>
 	</div>
 </article>
