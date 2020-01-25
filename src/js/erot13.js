@@ -1,4 +1,6 @@
 /* Encryption function */
+/* The anchor element should look like this:
+<a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> */
 function erot13(s) {
   return (s ? s : this).split("").map(function (_) {
     if (!_.match(/[A-za-z]/)) return _;
