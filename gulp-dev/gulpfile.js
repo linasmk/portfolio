@@ -14,7 +14,8 @@ const gulp = require("gulp"),
   rename = require("gulp-rename"),
   lineec = require("gulp-line-ending-corrector"),
   babel = require("gulp-babel"),
-  del = require("del");
+  del = require("del"),
+  webp = require("gulp-webp");
 
 const { src, dest, watch, series, parallel, task } = require("gulp");
 
@@ -49,16 +50,19 @@ const concatOrder = [
 ];
 
 /* ======== Functions ======= */
-// export const trsPhp = () =>
-//   src(`${sources.src}**/*.php`).pipe(dest(distribution.dist));
+const webpConvert = () => {
+  return src(`${sources.img}**`)
+    .pipe(webp({preset: 'photo', quality: 75, method: 6}))
+    .pipe(dest(distribution.img));
+}
+const trsPhp = () =>
+  src(`${sources.src}**/*.php`).pipe(dest(distribution.dist));
 
-function trsPhp() {
-  return src(`${sources.src}**/*.php`).pipe(dest(distribution.dist));
-}
-function trsWebfonts() {
+const trsWebfonts = () => {
   return src(`${sources.webfonts}*`).pipe(dest(distribution.webfonts));
-}
-function compileSass() {
+};
+
+const compileSass = () => {
   return src(`${sources.scss}style.scss`)
     .pipe(
       sass({
@@ -73,8 +77,9 @@ function compileSass() {
     .pipe(lineec())
     .pipe(dest(distribution.css))
     .pipe(browsersync.stream());
-}
-function compileJs() {
+};
+
+const compileJs = () => {
   return src(concatOrder)
     .pipe(sourcemaps.init())
     .pipe(
@@ -88,25 +93,28 @@ function compileJs() {
     .pipe(lineec())
     .pipe(sourcemaps.write("."))
     .pipe(dest(distribution.js));
-}
-function imgMin() {
+};
+
+const imgMin = () => {
   return src(`${sources.img}**/*`)
     .pipe(changed(distribution.img))
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
         imagemin.mozjpeg({ quality: 75, progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 })
+        imagemin.optipng({ optimizationLevel: 3 })
       ])
     )
     .pipe(dest(distribution.img));
-}
-function trsOtherFiles() {
+};
+
+const trsOtherFiles = () => {
   return src([`${sources.src}**.txt`, `${sources.src}**.xml`]).pipe(
     dest(distribution.dist)
   );
-}
-function clean(done) {
+};
+
+const clean = done => {
   del.sync(
     [
       `${Root}/dist/**/*`,
@@ -122,8 +130,9 @@ function clean(done) {
     { force: true }
   );
   done();
-}
-function watchFiles() {
+};
+
+const watchFiles = () => {
   browsersync.init({
     open: "external",
     injectChanges: true,
@@ -134,21 +143,23 @@ function watchFiles() {
   watch(sources.webfonts, trsWebfonts).on("change", browsersync.reload);
   watch(sources.scss, compileSass);
   watch(concatOrder, compileJs).on("change", browsersync.reload);
-  watch(sources.img, imgMin).on("change", browsersync.reload);
+  watch(sources.img, series(imgMin, webpConvert)).on("change", browsersync.reload);
   watch([`${sources.src}**.xml`, `${sources.src}**.xml`], trsOtherFiles).on(
     "change",
     browsersync.reload
   );
-}
+};
 
 const build = series(
   clean,
-  parallel(compileSass, compileJs, imgMin, trsPhp, trsWebfonts, trsOtherFiles)
+  parallel(compileSass, compileJs, imgMin, trsPhp, trsWebfonts, trsOtherFiles),
+  webpConvert
 );
 /* ============ Tasks =========== */
 task("compileSass", compileSass);
 task("compileJs", compileJs);
 task("imgMin", imgMin);
+task("webpConvert", webpConvert);
 task("trsPhp", trsPhp);
 task("trsWebfonts", trsWebfonts);
 task("trsOtherFiles", trsOtherFiles);
@@ -162,6 +173,7 @@ exports.trsWebfonts = trsWebfonts;
 exports.compileSass = compileSass;
 exports.compileJs = compileJs;
 exports.imgMin = imgMin;
+exports.webpConvert = webpConvert;
 exports.trsOtherFiles = trsOtherFiles;
 exports.clean = clean;
 exports.watchFiles = watchFiles;

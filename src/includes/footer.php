@@ -1,5 +1,5 @@
 <footer>
-	<p>&copy 2019 Linas Mackonis. All rights reserved</p>
+	<p>&copy 2020 Linas Mackonis. All rights reserved</p>
 </footer>
 
 

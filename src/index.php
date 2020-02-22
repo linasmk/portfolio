@@ -3,10 +3,25 @@ $page = 'home';
  require_once("includes/header.php"); ?>
 <article id="hero" class="hero">
 	<div class="hero_inner__wrapper">
-		<section class="hero_text fade_in">
-			<h1>Linas Mackonis <br><span>- front-end web developer</span></h1>
-		</section>
-		<div class="hero_img fade_in"></div>
+			<h1 class="hero_text fade_in">Linas Mackonis <br><span>- front-end web developer</span></h1>
+
+			<picture class="hero_img fade_in">
+
+				<source media="(min-width: 580px)" srcset="img/portrait250x427.webp" type="image/webp" sizes="250px">
+				<source media="(min-width: 580px)" srcset="img/portrait250x427.png" type="image/png" sizes="250px">
+
+				<source media="(min-width: 480px)" srcset="img/portrait200X342.webp" type="image/webp" sizes="200px">
+				<source media="(min-width: 480px)" srcset="img/portrait200X342.png" type="image/png" sizes="200px">
+
+				<source media="(min-width: 374px)" srcset="img/portrait150x257.webp" type="image/webp" sizes="150px">
+				<source media="(min-width: 374px)" srcset="img/portrait150x257.png" type="image/png" sizes="150px">
+
+				<source media="(min-width: 300px)" srcset="img/portrait120x205.webp" type="image/webp" sizes="120px">
+				<source media="(min-width: 300px)" srcset="img/portrait120x205.png" type="image/png" sizes="120px">
+
+				<img  data-src="img/portrait120x205.png" alt="My personal portrait picture">
+			</picture>
+
 		<div class="iphone_img">
 			<a class="slide_out" href="#projects">
 			<img src="img/iphone_on.png" alt="Iphone with a turned on screen"></a>
@@ -15,11 +30,10 @@ $page = 'home';
 </article>
 <article id="about_me" class="about_me">
 	<h2 class="fade_in">About Me</h2>
-	<p class="fade_in intro_p">Some introductions should be like a miniskirt, short enough to maintain the interest, but long enough to cover the subject.</p>
 	<h3>Hello and nice to meet you! I am Linas and I love to make simple and beautiful websites, for medium and small-sized businesses.</h3>
 
 	<p class="fade_in">I am a passionate front-end web developer with a soon-to-be 3 years of freelancing experience. I am educated at <a class="link" href="https://www.baaa.dk/programmes/ap-degree/multimedia-design/" target="_blank">Business Academy Aarhus</a> and I continue to live in Denmark, but I provide my services across the EU and beyond.</p>
-	
+
 	<p class="fade_in">You are always welcome to contact me or check my <a href="https://github.com/linasmk">GitHub profile</a>.</p>
 </article>
 <article id="my_stack" class="my_stack">
@@ -38,10 +52,10 @@ $page = 'home';
 	</div>
 
 </article>
-<article id="projects" class="projects"> 
+<article id="projects" class="projects">
 	<section class="projects_content">
 		<h2 class="fade_in">Projects</h2>
-		<p class="fade_in">My designs, code structures and front-end applications are build by using SCSSsss, Gulp.js, JavaScript, PHP and WordPress. Please find some of my projects below.</p>
+		<p class="fade_in">My designs, code structures and front-end applications are build by using SCSS, Gulp.js, JavaScript, PHP and WordPress. Please find some of my projects below.</p>
 	</section>
 	<div class="project_background">
 			<?php require_once("includes/content/carousel.php"); ?>
@@ -59,8 +73,8 @@ $page = 'home';
 		<section class="contact_details fade_in">
 			<a href="tel:+45-42-33-20-88"><span class="danish_flag"></span>+45 42 33 20 88</a>
 			<!-- <a href="tel:+370-672-48029" rel="nofollow"><span class="lithuanian_flag"></span>+370 672 48029</a> -->
-			
-			<a href="includes/mailhandler.php"><span class="email"></span>Email Me</a>  
+
+			<a href="includes/mailhandler.php"><span class="email"></span>Email Me</a>
 		</section>
 	</div>
 </article>

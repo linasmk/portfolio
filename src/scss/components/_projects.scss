@@ -1,114 +1,109 @@
 /* ========== Projects ========== */
 .projects {
-	width: 100%;
-	height: 100vh;
+  width: 100%;
 }
 .projects_content {
-	@include containerWidth_sm;
+  @include containerWidth_sm;
 }
 .projects h2 {
-	color: $darkBlue;
-	@extend %txtGradientHeading;
-	text-align: center;
-	font-size: 4rem;
-	margin: 4rem 0;
-	padding: 2rem 0;
+  color: $darkBlue;
+  @extend %txtGradientHeading;
+  text-align: center;
+  font-size: 4rem;
+  margin: 4rem 0;
+  padding: 2rem 0;
 }
 .projects p {
-	font-size: 2rem;
-	margin: 3rem 0;
-	line-height: 3rem;
+  font-size: 2rem;
+  margin: 3rem 0;
+  line-height: 3rem;
 }
 .project_background {
-	position: relative;
-	background: linear-gradient(190deg, rgba($darkBlue, .4), 
-		        rgba(#000067, .8) 70%);
+  position: relative;
+  background: linear-gradient(
+    190deg,
+    rgba($darkBlue, 0.4),
+    rgba(#000067, 0.8) 70%
+  );
+  padding: 2rem 0;
 }
-// .carousel {
-// 	overflow-x: hidden; 
-// 	@include containerWidth_sm;
-// 	@include verticalFlex(center, center);
-// }
-/* ---------------------------------------------------- */
 .slider {
-	position: relative;
-	overflow: hidden;
-	height: 60vh;
-	// display: flex;
-	// width: 400%;
-	// height: 100%;
-	//transition: all .6s cubic-bezier(.87,-0.37,.65,.91);
+  position: relative;
+  overflow: hidden;
+  height: 330px;
+  display: flex;
+  @include verticalFlex(center, center);
+  @include containerWidth_sm;
+  //transition: all .6s cubic-bezier(.87,-0.37,.65,.91);
 }
 .slide {
-	position: absolute;
+  position: absolute;
+  @include verticalFlex(center, center);
   width: 100%;
-	z-index: 1;
-	height: 50vh;
-	// flex-basis: 100%;
-	// @include verticalFlex(center, center);
+  z-index: 1;
+  visibility: hidden;
 }
 .slide_content {
-	width: 100%;
-	@include verticalFlex(center, center);
+  width: 100%;
+  @include verticalFlex(center, center);
 }
 .project_description {
-	color: $white;
-	width: 100%;
-	align-self: flex-start;
+  color: $white;
+  width: 100%;
+  align-self: flex-start;
 }
 .project_description h3 {
-	text-align: center;
-	margin: 1rem 0rem;
+  text-align: center;
+  margin: 1rem 0rem;
 }
 .project_description p {
-	margin: 0;
-	padding: 0 20px;
-	font-size: 1.4rem;
-	text-align: center;
-	line-height: 2rem;
+  margin: 0;
+  padding: 0 20px;
+  font-size: 1.4rem;
+  text-align: center;
+  line-height: 2rem;
 }
 .img_screen {
-	width: 100%;
-	padding: 15px 25px;
+  width: 100%;
+  padding: 15px 25px;
 }
 .project_link {
-	width: 130px;
-	text-align: left;
-	display: block;
-	font-size: 1.4rem;
-	line-height: 1.4rem;
-	padding: 9px;
-	margin: 1rem 0 5rem 0;
-	border: 1px solid $white;
-	position: relative;
-	color: $white;
-	opacity: .8;
-	@extend %noHighlightAndSelect;
-	transition: opacity 1s;
-	&:hover {
-		opacity: 1;
-	}
-	&::after {
-		content: "";
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		right: 0;
-		@include backgroundIMG(url(../img/arrow_long_right.svg), 
-			10%, 
-			-20px center);
-		opacity: 0;
-		transition: background-position .4s, opacity .4s;
-	}
-	&:hover::after {
-		background-position: 105px center;
-		opacity: 1;
-	}
+  width: 130px;
+  text-align: left;
+  display: block;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  padding: 9px;
+  // margin: 1rem 0 5rem 0;
+  border: 1px solid $white;
+  position: relative;
+  color: $white;
+  opacity: 0.8;
+  @extend %noHighlightAndSelect;
+  transition: opacity 1s;
+  &:hover {
+    opacity: 1;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    @include backgroundIMG(url(../img/arrow_long_right.svg), 10%, -20px center);
+    opacity: 0;
+    transition: background-position 0.4s, opacity 0.4s;
+  }
+  &:hover::after {
+    background-position: 105px center;
+    opacity: 1;
+  }
 }
 .activeSlide {
-	z-index: 2;
-} 	
+  z-index: 10;
+  visibility: visible;
+}
 .slideOutLeft {
   transform: translateX(-100%);
 }
@@ -140,103 +135,137 @@
   }
 }
 .controls .arrow {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	color: $white;
-	z-index: 200;
-	opacity: .5;
-	width: 20px;
-	@extend %noHighlightAndSelect;
-	transition: opacity .2s ease-in;
-	&:hover {
-		opacity: 1;
-	}
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: $white;
+  z-index: 200;
+  opacity: 0.5;
+  width: 20px;
+  @extend %noHighlightAndSelect;
+  transition: opacity 0.2s ease-in;
+  &:hover {
+    opacity: 1;
+  }
 }
 .left {
-	left: 5px;	
+  left: 5px;
 }
 .right {
-	right: 5px;
+  right: 5px;
 }
-.controls .slide_indicators {
-	@extend %ulStyle;
-	position: absolute;
-	display: flex;
-	bottom: 10px;
-	left: 50%;
-	transform: translate(-50%);
-}
-.controls .slide_indicators li {
-	width: 12px;
-	height: 12px;
-	border: 1px solid $white;
-	border-radius: 50px;
-	margin: 10px;
-	cursor: pointer;
-	background: rgba($white, .8);
-}
-.controls .slide_indicators li.selected {
-	background: transparent;
-}
+// .controls .slide_indicators {
+//   @extend %ulStyle;
+//   position: absolute;
+//   display: flex;
+//   bottom: 10px;
+//   left: 50%;
+//   transform: translate(-50%);
+// }
+// .controls .slide_indicators li {
+//   width: 12px;
+//   height: 12px;
+//   border: 1px solid $white;
+//   border-radius: 50px;
+//   margin: 10px;
+//   cursor: pointer;
+//   background: rgba($white, 0.8);
+// }
+// .controls .slide_indicators li.selected {
+//   background: transparent;
+// }
 @media screen and (min-width: 500px) {
-	// .carousel {
-	// 	position: relative;
-	// }
-	.project_description {
-		width: 100%;
-	}
-	.project_description h3 {
-		font-size: 2rem;
-	}
-	.img_screen {
-		padding: 15px 30px;
-	}
-	.left {
-		left: 0;	
-	}
-	.right {
-		right: 0;
-	}
+  .project_description {
+    width: 100%;
+  }
+  .project_description h3 {
+    font-size: 2rem;
+  }
+  .img_screen {
+    padding: 15px 30px;
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    right: 0;
+  }
 }
 @media screen and (min-width: 700px) {
-	.project_description {
-		width: 100%;
-	}
-	.project_description p {
-		font-size: 1.6rem;
-		line-height: 2rem;
-	}
+  .project_description {
+    width: 100%;
+  }
+  .project_description p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .slider {
+    height: 380px;
+  }
 }
 @media screen and (min-width: 768px) {
-	.projects_content {
-		@include containerWidth_md;
-	}
+  .projects_content {
+    @include containerWidth_md;
+  }
+  .slider {
+    @include containerWidth_md;
+    height: 400px;
+  }
+  .left {
+    left: 12%;
+  }
+  .right {
+    right: 12%;
+  }
 }
 @media screen and (min-width: 900px) {
-	.project_description {
-		width: 100%;
-	}
-	.project_description h3 {
-		font-size: 3rem;
-	}
-	.project_description p {
-		font-size: 2.4rem;
-		line-height: 3.5rem;
-	}
+  .project_description {
+    width: 100%;
+  }
+  .project_description h3 {
+    font-size: 3rem;
+  }
+  .project_description p {
+    font-size: 2.4rem;
+    line-height: 3.5rem;
+  }
+  .slider {
+    height: 450px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .slider {
+    height: 525px;
+  }
 }
 @media screen and (min-width: 1250px) {
-	.projects p {
-		max-width: 1250px;
-		width: 100%;
-		margin: 3rem auto;
-	}
+  .projects p {
+    max-width: 1250px;
+    width: 100%;
+    margin: 3rem auto;
+  }
+  .slider {
+    height: 575px;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .slider {
+    height: 600px;
+  }
 }
 @media screen and (min-width: 2000px) {
-	.projects_content {
-		@include containerWidth_lg;
-	}
+  .projects_content {
+    @include containerWidth_lg;
+  }
+  .slider {
+    height: 625px;
+    @include containerWidth_lg;
+  }
+  .left {
+    left: 18%;
+  }
+  .right {
+    right: 18%;
+  }
 }
-
-
