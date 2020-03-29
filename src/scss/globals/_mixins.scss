@@ -1,4 +1,4 @@
-/* =========== Navigation ============ */ 
+/* =========== Navigation ============ */
 @mixin center($xy:xy) {
   @if $xy == xy {
     left: 50%;
@@ -49,11 +49,11 @@
   margin: 0 auto;
 }
 @mixin containerWidth_md {
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
 }
 @mixin containerWidth_lg {
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
 }
 

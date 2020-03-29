@@ -1,4 +1,4 @@
-<?php /*header("Cache-Control: no-cache");*/
+<?php header("Cache-Control: no-cache");
 $page = 'home';
  require_once("includes/header.php"); ?>
 <article id="hero" class="hero">
@@ -6,26 +6,36 @@ $page = 'home';
 			<h1 class="hero_text fade_in">Linas Mackonis <br><span>- front-end web developer</span></h1>
 
 			<picture class="hero_img fade_in">
+				<source media="(min-width: 998px)" srcset="img/portrait/portrait250x480.webp" type="image/webp" sizes="250px">
+				<source media="(min-width: 998px)" srcset="img/portrait/portrait250x480.png" type="image/png" sizes="250px">
 
-				<source media="(min-width: 580px)" srcset="img/portrait250x427.webp" type="image/webp" sizes="250px">
-				<source media="(min-width: 580px)" srcset="img/portrait250x427.png" type="image/png" sizes="250px">
+				<source media="(min-width: 480px)" srcset="img/portrait/portrait200x385.webp" type="image/webp" sizes="200px">
+				<source media="(min-width: 480px)" srcset="img/portrait/portrait200x385.png" type="image/png" sizes="200px">
 
-				<source media="(min-width: 480px)" srcset="img/portrait200X342.webp" type="image/webp" sizes="200px">
-				<source media="(min-width: 480px)" srcset="img/portrait200X342.png" type="image/png" sizes="200px">
+				<source media="(min-width: 360px)" srcset="img/portrait/portrait150x289.webp" type="image/webp" sizes="150px">
+				<source media="(min-width: 360px)" srcset="img/portrait/portrait150x289.png" type="image/png" sizes="150px">
 
-				<source media="(min-width: 374px)" srcset="img/portrait150x257.webp" type="image/webp" sizes="150px">
-				<source media="(min-width: 374px)" srcset="img/portrait150x257.png" type="image/png" sizes="150px">
+				<source media="(min-width: 280px)" srcset="img/portrait/portrait120x231.webp" type="image/webp" sizes="120px">
+				<source media="(min-width: 280px)" srcset="img/portrait/portrait120x231.png" type="image/png" sizes="120px">
 
-				<source media="(min-width: 300px)" srcset="img/portrait120x205.webp" type="image/webp" sizes="120px">
-				<source media="(min-width: 300px)" srcset="img/portrait120x205.png" type="image/png" sizes="120px">
-
-				<img  data-src="img/portrait120x205.png" alt="My personal portrait picture">
+				<img src="img/portrait/portrait120x205.png" alt="My personal portrait picture">
 			</picture>
 
-		<div class="iphone_img">
-			<a class="slide_out" href="#projects">
-			<img src="img/iphone_on.png" alt="Iphone with a turned on screen"></a>
-		</div>
+			<a class="slide_out hero_link" href="#projects">
+				<picture>
+					<source media="(min-width: 1200px)" srcset="img/hero_img/device_frames400x218.webp" type="image/webp" sizes="400px">
+				    <source media="(min-width: 1200px)" srcset="img/hero_img/device_frames400x218.png" type="image/png" sizes="400px">
+
+					<source media="(min-width: 998px)" srcset="img/hero_img/device_frames300x164.webp" type="image/webp" sizes="300px">
+				    <source media="(min-width: 998px)" srcset="img/hero_img/device_frames300x164.png" type="image/png" sizes="300px">
+
+					<source media="(min-width: 280px)" srcset="img/hero_img/device_frames250x136.webp" type="image/webp" sizes="250px">
+				    <source media="(min-width: 280px)" srcset="img/hero_img/device_frames250x136.png" type="image/png" sizes="250px">
+
+					<img class="hero_link_image" data-src="img/hero_img/device_frames250x136.png" alt="Mobile, Tablet and Desktop Screens">
+				</picture>
+				<h3>Check My <span>Projects</span><span class="hero_link__arrow"></span></h3>
+			</a>
 	</div>
 </article>
 <article id="about_me" class="about_me">
@@ -39,16 +49,16 @@ $page = 'home';
 <article id="my_stack" class="my_stack">
 	<h2 class="fade_in">My Stack</h2>
 	<div class="my_stack__icons">
-		<img data-src="img/html_icon.svg" alt="HTML icon" class="html_icon fade_in" title="HTML">
-		<img data-src="img/css_icon.svg" alt="CSS icon" class="css_icon fade_in" title="CSS">
-		<img data-src="img/js_icon.svg" alt="JavaScript icon" class="css_icon fade_in" title="JavaScript">
-		<img data-src="img/sass_icon.svg" alt="Sass icon" class="sass_icon fade_in" title="SASS">
-		<img data-src="img/npm_icon.svg" alt="NPM icon" class="npm_icon fade_in" title="NPM">
-		<img data-src="img/gulp_icon.svg" alt="Gulp icon" class="gulp_icon fade_in" title="Gulp">
-		<img data-src="img/ai_icon.svg" alt="AI icon" class="ai_icon fade_in" title="Adobe Illustrator">
-		<img data-src="img/php_icon.svg" alt="PHP icon" class="php_icon fade_in" title="PHP">
-		<img data-src="img/wp_icon.svg" alt="WordPress icon" class="wp_icon fade_in" title="WordPress">
-		<img data-src="img/svg_icon.svg" alt="SVG icon" class="svg_icon fade_in" title="SVG">
+		<img src="img/html_icon.svg" alt="HTML icon" class="html_icon fade_in"  title="HTML">
+		<img src="img/css_icon.svg" alt="CSS icon" class="css_icon fade_in" title="CSS">
+		<img src="img/js_icon.svg" alt="JavaScript icon" class="css_icon fade_in" title="JavaScript">
+		<img src="img/sass_icon.svg" alt="Sass icon" class="sass_icon fade_in" title="SASS">
+		<img src="img/npm_icon.svg" alt="NPM icon" class="npm_icon fade_in" title="NPM">
+		<img src="img/gulp_icon.svg" alt="Gulp icon" class="gulp_icon fade_in" title="Gulp">
+		<img src="img/ai_icon.svg" alt="AI icon" class="ai_icon fade_in" title="Adobe Illustrator">
+		<img src="img/php_icon.svg" alt="PHP icon" class="php_icon fade_in" title="PHP">
+		<img src="img/wp_icon.svg" alt="WordPress icon" class="wp_icon fade_in" title="WordPress">
+		<img src="img/svg_icon.svg" alt="SVG icon" class="svg_icon fade_in" title="SVG">
 	</div>
 
 </article>

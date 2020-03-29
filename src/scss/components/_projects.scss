@@ -142,18 +142,27 @@
   color: $white;
   z-index: 200;
   opacity: 0.5;
-  width: 20px;
+  font-size: 40px;
   @extend %noHighlightAndSelect;
   transition: opacity 0.2s ease-in;
+  @include fa-icon;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
   &:hover {
     opacity: 1;
   }
 }
 .left {
   left: 5px;
+  &::after {
+    content: fa-content($fa-var-chevron-left);
+  }
 }
 .right {
   right: 5px;
+  &::after {
+    content: fa-content($fa-var-chevron-right);
+  }
 }
 // .controls .slide_indicators {
 //   @extend %ulStyle;
@@ -175,6 +184,7 @@
 // .controls .slide_indicators li.selected {
 //   background: transparent;
 // }
+/*! =========== Media Queries =========== */
 @media screen and (min-width: 500px) {
   .project_description {
     width: 100%;
@@ -254,7 +264,7 @@
     height: 600px;
   }
 }
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1800px) {
   .projects_content {
     @include containerWidth_lg;
   }

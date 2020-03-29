@@ -3,7 +3,7 @@
 <html class="no-js" lang="en">
 <?php include("head.php"); ?>
 
-<body class="<?php echo $page ?>">
+<body class="<?php echo $page ?> body">
 	<header>
 		<nav class="stretchynav">
 			<a class="stretchynav_trigger" href="#0"><span aria-hidden="true"></span>

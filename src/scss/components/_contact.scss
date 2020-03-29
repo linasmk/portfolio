@@ -18,7 +18,7 @@
 	line-height: 3rem;
 }
 .contact_background {
-	background: linear-gradient(190deg, rgba($darkBlue, .4), 
+	background: linear-gradient(190deg, rgba($darkBlue, .4),
 		        rgba($veryDarkBlue, .8) 70%);
 }
 .contact_details {
@@ -31,7 +31,7 @@
 	color: $white;
 	text-align: center;
 	font-size: 2.5rem;
-	margin: 3rem 0;
+	margin: 1rem 0;
 	position: relative;
 	padding: 2rem 0;
 	opacity: 1;
@@ -46,17 +46,19 @@
 	width: 30px;
 	height: 30px;
 	margin: 0 15px 0 0;
-	@include backgroundIMG(url(../img/danish_flag.png), 
-		100%, 
-		center -1px);
+	background-size: 100%;
+	background-position: center -1px;
+	background-repeat: no-repeat;
+	background-image: url(../img/danish_flag.png);
+	background-image: url(../img/danish_flag.webp);
 }
 /*.contact_details a:nth-child(2) span {
  	display: block;
  	width: 30px;
 	height: 30px;
 	margin: 0 15px 0 0;
-	@include backgroundIMG(url(../img/lithuanian_flag.png), 
-		100%, 
+	@include backgroundIMG(url(../img/lithuanian_flag.png),
+		100%,
 		center center);
 }*/
 .contact_details a:nth-child(2) span {
@@ -64,10 +66,13 @@
 	width: 30px;
 	height: 30px;
 	margin: 0 15px 0 0;
-	@include backgroundIMG(url(../img/mail.png), 
-		120%, 
-		center center);
+	background-size: 120%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-image: url(../img/mail.png);
+	background-image: url(../img/mail.webp);
 }
+/*! =========== Media Queries =========== */
 @media screen and (min-width: 768px) {
 	.contact_content {
 		@include containerWidth_md;
@@ -83,7 +88,7 @@
 		margin: 3rem auto;
 	}
 }
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1800px) {
 	.contact_content {
 		@include containerWidth_lg;
 	}

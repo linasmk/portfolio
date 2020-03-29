@@ -23,28 +23,19 @@
   transition: transform 1s;
 }
 .hero_inner__wrapper {
-  height: 57vh;
-  @include horizontalFlex(space-between, flex-end)
+  height: 60vh;
+  @include horizontalFlex(flex-start, flex-end)
   @include containerWidth_sm;
+  position: relative;
+  overflow: hidden;
   z-index: 4;
-}
-.hero_img {
-  order: 2;
-  display: flex;
-  align-self: flex-end;
-  z-index: 5;
-}
-.hero_img img {
-  align-self: flex-end;
-}
-.iphone_img {
-  display: none;
 }
 .hero_text {
   width: 100%;
   text-align: left;
   align-self: flex-start;
   order: 1;
+  flex-grow: 1;
   margin: 25px 0 10px 0;
   z-index: 4;
   font-family: $indieFlower;
@@ -61,37 +52,84 @@
   color: white;
   margin: 0;
 }
-/*! =========== Media Queries: Orientation: Portrait =========== */
-@media screen and (min-width: 550px) and (orientation: portrait) {
-  .hero_inner__wrapper {
-    height: 60vh;
-    overflow: hidden;
-  }
+.hero_img {
+  order: 2;
+  display: flex;
+  align-self: flex-end;
+  z-index: 5;
+}
+.hero_img img {
+  align-self: flex-end;
+}
+.hero_link {
+  display: none;
+  order: 3;
+
+}
+/*! =========== Media Queries =========== */
+@media screen and (min-width: 360px) {
   .hero_text {
-    font-size: 4rem;
-    line-height: 3rem;
+    font-size: 3.5rem;
+    line-height: 2.2rem;
   }
   .hero_text span {
     font-size: 1.8rem;
   }
-  .iphone_img {
-    position: relative;
-    width: 80%;
-    height: 100%;
-    z-index: 5;
-    display: none;
-  }
- /* .iphone_img a {
-    max-width: 100%;
-    max-height: 100%;
-    position: absolute;
-  }*/
 }
-
-@media screen and (min-width: 768px) and (orientation: portrait) {
+@media screen and (min-width: 410px) {
+  .hero_text {
+    font-size: 4rem;
+    line-height: 2.4rem;
+  }
+  .hero_text span {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 480px) {
+  .hero_text {
+    font-size: 5rem;
+    line-height: 2.6rem;
+  }
+  .hero_text span {
+    font-size: 2.2rem;
+  }
+}
+@media screen and (min-width: 600px) {
+  .hero_text {
+    text-align: center;
+  }
+  .hero_link {
+    display: block;
+    order: 3;
+    position: absolute;
+    right: 0;
+    @include fa-icon;
+  }
+  .hero_link {
+    font-size: 2.5rem;
+  }
+  .hero_link h3 {
+    margin: 5px 0 5px 0;
+    display: flex;
+    flex-direction: column;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: verdana;
+  }
+  .hero_link__arrow {
+    &::after {
+    content: fa-content($fa-var-angle-down);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 100%;
+    height: 20px;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
   .hero_inner__wrapper {
     @include containerWidth_md;
-    height: 60vh;
   }
   .hero_text {
     font-size: 6rem;
@@ -101,80 +139,154 @@
     font-size: 2.5rem;
   }
 }
-@media screen and (min-width: 800px) and (orientation: portrait) {
+@media screen and (min-width: 800px) {
   .hero_inner__wrapper {
     height: 50vh;
   }
 }
-
-@media screen and (min-width: 1024px) and (orientation: portrait) {
+@media screen and (min-width: 1800px) {
   .hero_inner__wrapper {
     @include containerWidth_lg;
   }
 }
 /* =========== Orientation: Landscape =========== */
-@media screen and (min-width: 500px) and (orientation: landscape) {
+@media screen and (min-width: 500px) and (max-width: 767px) and (orientation: landscape) {
   .hero_inner__wrapper {
     height: 95vh;
     position: relative;
-    overflow: hidden;
+    justify-content: center;
+  }
+  .hero_text {
+    font-size: 4rem;
+    line-height: 2.4rem;
+    text-align: center;
+  }
+  .hero_text span {
+    font-size: 2rem;
   }
   .hero_img img {
-    width: 120px;
-  }
-  .iphone_img {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 26%;
-    height: 100%;
-    z-index: 5;
     display: none;
   }
-  /*.iphone_img a {
-    max-width: 100%;
-    max-height: 100%;
+  .hero_link {
+    display: block;
     position: absolute;
-  }*/
+    @include fa-icon;
+    right: unset;
+  }
+  .hero_link h3 {
+    margin: 5px 0 5px 0;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: verdana;
+  }
+  .hero_link_image {
+    width: 200px;
+  }
+  .hero_link__arrow {
+    &::after {
+    content: fa-content($fa-var-angle-down);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 100%;
+    height: 20px;
+    }
+  }
 }
-@media screen and (min-width: 700px) and (orientation: landscape) {
+@media screen and (min-width: 768px) and (max-height: 480px) and (orientation: landscape) {
+  .hero_inner__wrapper {
+    height: 90vh;
+    position: relative;
+  }
+  .hero_text {
+    font-size: 4rem;
+    line-height: 2.4rem;
+    text-align: center;
+  }
+  .hero_text span {
+    font-size: 2rem;
+  }
   .hero_img img {
-    width: 140px;
+    display: block;
+    width: 145px;
+  }
+  .hero_link {
+    display: block;
+    position: absolute;
+    right: 5%;
+    @include fa-icon;
+  }
+  .hero_link h3 {
+    margin: 5px 0 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: verdana;
+  }
+  .hero_link_image {
+    width: 210px;
+  }
+  .hero_link__arrow {
+    &::after {
+    content: fa-content($fa-var-angle-down);
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 100%;
+    height: 20px;
+    }
   }
 }
-@media screen and (min-width: 768px) and (orientation: landscape) {
+@media screen and (min-width: 800px) and (min-height: 481px) and (orientation: landscape) {
   .hero_inner__wrapper {
-    @include containerWidth_md;
-  }
-}
-@media screen and (min-width: 850px) and (orientation: landscape) {
-  .hero_inner__wrapper {
-    height: 70vh;
-  }
-}
-@media screen and (min-width: 950px) and (orientation: landscape) {
-  .hero_inner__wrapper {
-    height: 60vh;
+    height: 80vh;
   }
   .hero_img img {
-    width: 160px;
-  }
-  .iphone_img {
-    width: 30%;
-    margin-top: -15%;
+    width: 180px;
   }
 }
-
-@media screen and (min-width: 1200px) and (orientation: landscape) {
+@media screen and (min-height: 600px) and (orientation: landscape) {
   .hero_inner__wrapper {
-    height: 50vh;
+    height: 85vh;
   }
   .hero_img img {
     width: 200px;
   }
 }
-@media screen and (min-width: 2000px) and (orientation: landscape) {
+@media screen and (min-height: 700px) and (orientation: landscape) {
   .hero_inner__wrapper {
-    @include containerWidth_lg;
+    height: 80vh;
+  }
+  .hero_img img {
+    width: 250px;
+  }
+  .hero_link {
+    font-size: 3rem;
+  }
+  .hero_link_image {
+    width: 350px;
   }
 }
+@media screen and (min-height: 900px) and (orientation: landscape) {
+  .hero_inner__wrapper {
+    height: 70vh;
+  }
+  .hero_img img {
+    width: 250px;
+  }
+  .hero_link_image {
+    width: 400px;
+  }
+}
+
+
+
+

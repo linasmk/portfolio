@@ -1,11 +1,11 @@
-// Opening navigation by clikcing nav trigger 
+// Opening navigation by clikcing nav trigger
 // and closing with nav trigger & outside click.
 jQuery(document).ready(function () {
 	if ($('.stretchynav').length > 0) {
-		var stretchyNavs = $('.stretchynav');
+		let stretchyNavs = $('.stretchynav');
 
 		stretchyNavs.each(function () {
-			var stretchyNav = $(this),
+			let stretchyNav = $(this),
 				stretchyNavTrigger = stretchyNav.find('.stretchynav_trigger');
 
 			stretchyNavTrigger.on('click', function (event) {
@@ -20,52 +20,56 @@ jQuery(document).ready(function () {
 	}
 });
 
-// Intersection Observer API
-// Changing navigation bg color depending on scroll
-const stretchynavBg = document.querySelector('.stretchynav_bg');
-const projectBg = document.querySelectorAll('.project_background');
-const sections = document.querySelectorAll('article');
-const listAnchor = document.querySelectorAll('.a_item span');
 
-function liHover(disp) {
-	for (let i = 0; i < listAnchor.length; i++) {
-		listAnchor[i].style.display = disp;
-	}
-}
+if ("IntersectionObserver" in window) {
+	// Intersection Observer API
+	// Changing navigation bg color depending on scroll
+	const stretchynavBg = document.querySelector('.stretchynav_bg');
+	const projectBg = document.querySelectorAll('.project_background');
+	const sections = document.querySelectorAll('article');
+	const listAnchor = document.querySelectorAll('.a_item span');
 
-const heroSectionOptions = {
-	rootMargin: "-270px 0px 0px 0px",
-	threshold: 0
-};
-const heroSectionObserver = new IntersectionObserver(function (
-	entries, heroSectionObserver
-) {
-	entries.forEach(entry => {
-		if (entry.target.className === "hero") {
-
-			if (!entry.isIntersecting) {
-				stretchynavBg.classList.add('nav-scrolled');
-				liHover('none');
-			} else {
-				stretchynavBg.classList.remove('nav-scrolled');
-				liHover('block');
-			}
+	function liHover(disp) {
+		for (let i = 0; i < listAnchor.length; i++) {
+			listAnchor[i].style.display = disp;
 		}
-	});
-}, heroSectionOptions);
+	}
 
-sections.forEach(section => {
-	heroSectionObserver.observe(section);
-});
-projectBg.forEach(bg => {
-	heroSectionObserver.observe(bg);
-});
+	const heroSectionOptions = {
+		rootMargin: "-270px 0px 0px 0px",
+		threshold: 0
+	};
+	const heroSectionObserver = new IntersectionObserver(function (
+		entries, heroSectionObserver
+	) {
+		entries.forEach(entry => {
+			if (entry.target.className === "hero") {
+
+				if (!entry.isIntersecting) {
+					stretchynavBg.classList.add('nav-scrolled');
+					liHover('none');
+				} else {
+					stretchynavBg.classList.remove('nav-scrolled');
+					liHover('block');
+				}
+			}
+		});
+	}, heroSectionOptions);
+
+	sections.forEach(section => {
+		heroSectionObserver.observe(section);
+	});
+	projectBg.forEach(bg => {
+		heroSectionObserver.observe(bg);
+	});
+
+}
 
 // Smooth scroll
 const listItems = document.querySelectorAll('.a_item');
-const iphone = document.querySelector('.iphone_img a');
+const heroLink = document.querySelector('.hero_link');
 
-iphone.addEventListener('click', (e) => {
+heroLink.addEventListener('click', (e) => {
 	smoothScroll(e);
 });
 

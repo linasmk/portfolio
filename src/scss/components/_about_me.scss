@@ -39,7 +39,7 @@
 		margin: 3rem 0;
 	}
 }
-@media screen and (min-width: 2000px) {
+@media screen and (min-width: 1800px) {
 	.about_me {
 		@include containerWidth_lg;
 	}
