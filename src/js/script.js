@@ -1,24 +1,18 @@
 // Opening navigation by clikcing nav trigger
 // and closing with nav trigger & outside click.
-jQuery(document).ready(function () {
-	if ($('.stretchynav').length > 0) {
-		let stretchyNavs = $('.stretchynav');
-
-		stretchyNavs.each(function () {
-			let stretchyNav = $(this),
-				stretchyNavTrigger = stretchyNav.find('.stretchynav_trigger');
-
-			stretchyNavTrigger.on('click', function (event) {
-				event.preventDefault();
-				stretchyNav.toggleClass('nav-is-visible');
+if (document.querySelector('.stretchynav_trigger')) {
+	console.log("works");
+	let navEl = document.querySelector('.stretchynav_trigger');
+	navEl.addEventListener('click', e => {
+		console.log('log')
+				e.preventDefault();
+				document.querySelector('.stretchynav').classList.toggle('nav-is-visible');
 			});
-		});
 
-		$(document).on('click', function (event) {
-			(!$(event.target).is('.stretchynav_trigger') && !$(event.target).is('.stretchynav_trigger span')) && stretchyNavs.removeClass('nav-is-visible');
-		});
-	}
-});
+	document.addEventListener('click', function (e) {
+		(!e.target.matches('.stretchynav_trigger') && !e.target.matches('.stretchynav_trigger span')) && document.querySelector('.stretchynav').classList.remove('nav-is-visible');
+	});
+}
 
 
 if ("IntersectionObserver" in window) {

@@ -1,11 +1,6 @@
 <footer>
 	<p>&copy 2020 Linas Mackonis</p>
 </footer>
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
   <?php
     global $page;
     if($page == 'home') {
