@@ -35,3 +35,5 @@ ErrorDocument 404 /not_found_page.php
   ExpiresByType application/pdf "access plus 1 month"
   ExpiresByType application/x-shockwave-flash "access plus 1 month"
 </IfModule>
+
+AddType image/svg+xml svg

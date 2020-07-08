@@ -1,56 +1,78 @@
 /* ========== My Stack ========== */
 .my_stack {
-	width: 100%;
-	background: linear-gradient(190deg, rgba($darkBlue, .4),
-		        rgba(#000067, .8) 70%);
-	padding: 2rem 0;
+  width: 100%;
+  background: linear-gradient(
+    190deg,
+    rgba($darkBlue, 0.4),
+    rgba(#000067, 0.8) 70%
+  );
+  padding: 2rem 0;
 }
 .my_stack h2 {
-	text-align: center;
-	color: $white;
-	text-align: center;
-	font-size: 4rem;
-	margin: 4rem 2.5rem;
+  text-align: center;
+  color: $white;
+  text-align: center;
+  font-size: 4rem;
+  margin: 4rem 2.5rem;
 }
 .my_stack__icons {
-	@include containerWidth_sm;
-	@include horizontalFlex(space-around, center)
+  @include containerWidth_sm;
+  @include horizontalFlex(space-between, center);
 }
-.html_icon, .css_icon, .js_icon, .sass_icon,
-.npm_icon, .gulp_icon, .ai_icon, .php_icon,
- .wp_icon, .svg_icon {
-	width: 40%;
-	margin: 25px 0;
+.icon-wrapper__icon {
+  width: 100%;
 }
-@media screen and (min-width: 480px) {
-	.html_icon, .css_icon, .js_icon, .sass_icon,
-	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
- 	.wp_icon, .svg_icon {
-		width: 26%;
-		margin: 25px 0;
-	}
+#icon-title {
+  transition: transform 0.5s ease-in-out;
 }
-@media screen and (min-width: 768px) {
-	.my_stack__icons {
-		@include containerWidth_md;
-	}
-	.html_icon, .css_icon, .js_icon, .sass_icon,
-	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
- 	.wp_icon, .svg_icon {
-		width: 21%;
-		margin: 25px 0;
-	}
+.icon-wrapper__icon:hover #icon-title {
+  transform: translate(10%, 10%);
 }
-@media screen and (min-width: 998px) {
-	.html_icon, .css_icon, .js_icon, .sass_icon,
-	.npm_icon, .gulp_icon, .ai_icon, .php_icon,
- 	.wp_icon, .svg_icon {
-		width: 17%;
-		margin: 25px 0;
-	}
+.icon-wrapper__webpack {
+  overflow: visible;
 }
-@media screen and (min-width: 1800px) {
-	.my_stack__icons {
-		@include containerWidth_lg;
-	}
+#outer-left,
+#outer-right {
+  transition: transform 0.5s ease-in-out;
+}
+.icon-wrapper__webpack:hover {
+  #outer-left {
+    transform: scale(0.85);
+  }
+  #outer-right {
+    transform: scale(1.15);
+  }
+}
+
+.icon-wrapper {
+  width: 40%;
+  margin: 25px 0;
+  @include noHighlightAndSelect;
+}
+
+@media (min-width: 480px) {
+  .icon-wrapper {
+    width: 35%;
+    margin: 25px 0;
+  }
+}
+@media (min-width: 768px) {
+  .my_stack__icons {
+    @include containerWidth_md;
+  }
+  .icon-wrapper {
+    width: 21%;
+    margin: 25px 0;
+  }
+}
+@media (min-width: 998px) {
+  .icon-wrapper {
+    width: 21%;
+    margin: 25px 0;
+  }
+}
+@media (min-width: 1800px) {
+  .my_stack__icons {
+    @include containerWidth_lg;
+  }
 }

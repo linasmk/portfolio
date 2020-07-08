@@ -1,46 +1,46 @@
 /*! ========== About Me ========== */
 .about_me {
-	@include containerWidth_sm;
-	padding: 2rem 0;
-	transition: transform 1s;
-	text-align: center;
+  @include containerWidth_sm;
+  padding: 2rem 0;
+  transition: transform 1s;
+  text-align: center;
 }
 .about_me h2 {
-	@extend %txtGradientHeading;
-	text-align: center;
-	font-size: 4rem;
-	margin: 4rem 0;
+  @extend %txtGradientHeading;
+  text-align: center;
+  font-size: 4rem;
+  margin: 4rem 0;
 }
 .about_me h3 {
-	@extend %txtGradientHeading_blue;
-	text-align: center;
-	font-size: 2.5rem;
-	margin: 4rem 0;
+  @extend %txtGradientHeading_blue;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 4rem 0;
 }
 .about_me p {
-	margin: 2rem 0;
-	line-height: 3rem;
+  margin: 2rem 0;
+  line-height: 3rem;
 }
 .intro_p {
-	font-size: 2.2rem;
-	font-style: italic;
-	text-align: center;
+  font-size: 2.2rem;
+  font-style: italic;
+  text-align: center;
 }
 @media screen and (min-width: 768px) {
-	.about_me {
-		@include containerWidth_md;
-	}
+  .about_me {
+    @include containerWidth_md;
+  }
 }
 @media screen and (min-width: 1290px) {
-	.about_me h2 {
-		margin: 4rem 0;
-	}
-	.about_me p {
-		margin: 3rem 0;
-	}
+  .about_me h2 {
+    margin: 4rem 0;
+  }
+  .about_me p {
+    margin: 3rem 0;
+  }
 }
 @media screen and (min-width: 1800px) {
-	.about_me {
-		@include containerWidth_lg;
-	}
+  .about_me {
+    @include containerWidth_lg;
+  }
 }

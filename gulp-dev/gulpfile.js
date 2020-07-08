@@ -1,6 +1,7 @@
 "use strict";
 /* ======== Package Variables ======= */
 const gulp = require("gulp"),
+  path = require("path"),
   autoprefixer = require("gulp-autoprefixer"),
   browsersync = require("browser-sync").create(),
   reload = browsersync.reload,
@@ -21,7 +22,7 @@ const { src, dest, watch, series, parallel, task } = require("gulp");
 
 /* ======== Themename and Root ======= */
 const themename = "portfolio",
-  Root = `../../${themename}`;
+  Root = path.join(__dirname, `../../${themename}`);
 
 /* ======== Source Folders ======= */
 const sources = {
@@ -29,7 +30,7 @@ const sources = {
   scss: `${Root}/src/scss/`,
   js: `${Root}/src/js/`,
   img: `${Root}/src/img/`,
-  webfonts: `${Root}/src/webfonts/`
+  webfonts: `${Root}/src/webfonts/`,
 };
 
 /* ======== Distribution Folders ======= */
@@ -38,7 +39,7 @@ const distribution = {
   css: `${Root}/dist/css/`,
   js: `${Root}/dist/js/`,
   img: `${Root}/dist/img/`,
-  webfonts: `${Root}/dist/webfonts/`
+  webfonts: `${Root}/dist/webfonts/`,
 };
 
 /* ======== File Concatination ======= */
@@ -46,17 +47,18 @@ const concatOrder = [
   `${sources.js}script.js`,
   `${sources.js}erot13.js`,
   `${sources.js}carousel.js`,
-  `${sources.js}lazy.js`
+  `${sources.js}lazy.js`,
 ];
 
 /* ======== Functions ======= */
 const webpConvert = () => {
   return src(`${sources.img}**`)
-    .pipe(webp({preset: 'photo', quality: 75, method: 6}))
+    .pipe(webp({ preset: "photo", quality: 75, method: 6 }))
     .pipe(dest(distribution.img));
-}
-const trsPhp = () =>
-  src(`${sources.src}**/*.php`).pipe(dest(distribution.dist));
+};
+const trsPhp = () => {
+  return src(`${sources.src}**/*.php`).pipe(dest(distribution.dist));
+};
 
 const trsWebfonts = () => {
   return src(`${sources.webfonts}*`).pipe(dest(distribution.webfonts));
@@ -69,7 +71,7 @@ const compileSass = () => {
         outputStyle: "compressed",
         indentType: "tab",
         indentWidth: "1",
-        errorLogToConsole: true
+        errorLogToConsole: true,
       }).on("error", sass.logError)
     )
     .pipe(autoprefixer("last 2 versions"))
@@ -84,7 +86,7 @@ const compileJs = () => {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ["@babel/env"]
+        presets: ["@babel/env"],
       })
     )
     .pipe(concat("main.js"))
@@ -102,19 +104,21 @@ const imgMin = () => {
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
         imagemin.mozjpeg({ quality: 75, progressive: true }),
-        imagemin.optipng({ optimizationLevel: 3 })
+        imagemin.optipng({ optimizationLevel: 5 }),
       ])
     )
     .pipe(dest(distribution.img));
 };
 
 const trsOtherFiles = () => {
-  return src([`${sources.src}**.txt`, `${sources.src}**.xml`]).pipe(
-    dest(distribution.dist)
-  );
+  return src([
+    `${sources.src}**.html`,
+    `${sources.src}**.txt`,
+    `${sources.src}**.xml`,
+  ]).pipe(dest(distribution.dist));
 };
 
-const clean = done => {
+const clean = (done) => {
   del.sync(
     [
       `${Root}/dist/**/*`,
@@ -125,7 +129,7 @@ const clean = done => {
       `!${Root}/src/**/*`,
       `!${Root}/**/*.git`,
       `!${Root}/**/*.gitattributes`,
-      `!${Root}/**/*.gitignore`
+      `!${Root}/**/*.gitignore`,
     ],
     { force: true }
   );
@@ -135,19 +139,19 @@ const clean = done => {
 const watchFiles = () => {
   browsersync.init({
     open: "external",
-    injectChanges: true,
+    injectChanges: false,
     proxy: "http://localhost/1.websites/portfolio/dist/",
-    port: 8080
+    port: 8080,
   });
-  watch(`${sources.src}**/*.php`, trsPhp).on("change", browsersync.reload);
+  watch(sources.src, trsPhp).on("change", browsersync.reload);
   watch(sources.webfonts, trsWebfonts).on("change", browsersync.reload);
   watch(sources.scss, compileSass);
   watch(concatOrder, compileJs).on("change", browsersync.reload);
-  watch(sources.img, series(imgMin, webpConvert)).on("change", browsersync.reload);
-  watch([`${sources.src}**.xml`, `${sources.src}**.xml`], trsOtherFiles).on(
+  watch(sources.img, series(imgMin, webpConvert)).on(
     "change",
     browsersync.reload
   );
+  watch(sources.src, trsOtherFiles).on("change", browsersync.reload);
 };
 
 const build = series(
