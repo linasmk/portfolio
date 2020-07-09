@@ -4,7 +4,7 @@
   <?php
     global $page;
     if($page == 'home') {
-      echo '<script src="js/main.min.js"></script>';
+      echo '<script src="js/index.js"></script>';
     } ?>
 </body>
 </html>
