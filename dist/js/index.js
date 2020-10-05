@@ -81,80 +81,46 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "../src/js/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "../src/js/index.js":
-/*!**************************!*\
-  !*** ../src/js/index.js ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// Opening navigation by clikcing nav trigger
-// and closing with nav trigger & outside click.
-if (document.querySelector(".stretchynav_trigger")) {
-  const nav = document.querySelector(".stretchynav");
-  const navEl = document.querySelector(".stretchynav_trigger");
-  navEl.addEventListener("click", e => {
-    e.preventDefault();
-    nav.classList.toggle("nav-is-visible");
-  });
-  document.addEventListener("click", function (e) {
-    !e.target.matches(".stretchynav_trigger") && !e.target.matches(".stretchynav_trigger span") && nav.classList.remove("nav-is-visible");
-  });
-}
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigation */ "./src/js/navigation.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-if ("IntersectionObserver" in window) {
-  // Intersection Observer API
-  // Changing navigation bg color depending on scroll
-  const stretchynavBg = document.querySelector(".stretchynav_bg");
-  const projectBg = document.querySelectorAll(".project_background");
-  const sections = document.querySelectorAll("article");
-  const listAnchor = document.querySelectorAll(".a_item span");
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-  function liHover(disp) {
-    for (let i = 0; i < listAnchor.length; i++) {
-      listAnchor[i].style.display = disp;
-    }
-  }
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-  const heroSectionOptions = {
-    rootMargin: "-270px 0px 0px 0px",
-    threshold: 0
-  };
-  const heroSectionObserver = new IntersectionObserver(function (entries, heroSectionObserver) {
-    entries.forEach(entry => {
-      if (entry.target.className === "hero") {
-        if (!entry.isIntersecting) {
-          stretchynavBg.classList.add("nav-scrolled");
-          liHover("none");
-        } else {
-          stretchynavBg.classList.remove("nav-scrolled");
-          liHover("block");
-        }
-      }
-    });
-  }, heroSectionOptions);
-  sections.forEach(section => {
-    heroSectionObserver.observe(section);
-  });
-  projectBg.forEach(bg => {
-    heroSectionObserver.observe(bg);
-  });
-} // Smooth scroll
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+/* =========== IMPORTS ========== */
 
 
-const listItems = document.querySelectorAll(".a_item");
-const heroLink = document.querySelector(".hero_link");
-heroLink.addEventListener("click", e => {
+/* ============ CODE =========== */
+
+Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["stretchyNav"])();
+Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["intersectionObserverForNav"])(); // Smooth scroll
+
+var listItems = document.querySelectorAll(".a_item");
+var heroLink = document.querySelector(".hero_link");
+heroLink.addEventListener("click", function (e) {
   smoothScroll(e);
 });
 Array.from(listItems).forEach(function (listItem) {
-  listItem.addEventListener("click", e => {
-    const item = e.target;
+  listItem.addEventListener("click", function (e) {
+    var item = e.target;
 
     if (item.textContent === "About Me") {
       smoothScroll(e);
@@ -170,17 +136,17 @@ Array.from(listItems).forEach(function (listItem) {
 
 function smoothScroll(e) {
   e.preventDefault();
-  const targetId = e.currentTarget.getAttribute("href") === "#" ? "header" : e.currentTarget.getAttribute("href");
-  const targetPosition = document.querySelector(targetId).offsetTop;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
-  const duration = 500;
-  let start = null;
+  var targetId = e.currentTarget.getAttribute("href") === "#" ? "header" : e.currentTarget.getAttribute("href");
+  var targetPosition = document.querySelector(targetId).offsetTop;
+  var startPosition = window.pageYOffset;
+  var distance = targetPosition - startPosition;
+  var duration = 500;
+  var start = null;
   window.requestAnimationFrame(step);
 
   function step(timestamp) {
     if (!start) start = timestamp;
-    const progress = timestamp - start;
+    var progress = timestamp - start;
     window.scrollTo(0, easeInOutQuad(progress, startPosition, distance, duration));
     if (progress < duration) window.requestAnimationFrame(step);
   }
@@ -197,48 +163,47 @@ function smoothScroll(e) {
   }
 }
 
-const faders = document.querySelectorAll('.fade_in');
-const slideOut = document.querySelector('.slide_out');
+var faders = document.querySelectorAll(".fade_in");
+var slideOut = document.querySelector(".slide_out");
 
 if (slideOut) {
-  slideOut.classList.add('run');
+  slideOut.classList.add("run");
 }
 
 if ("IntersectionObserver" in window) {
-  const appearOnScrollOptions = {
-    threshold: .1
-  };
-  const appearOnScrollObserver = new IntersectionObserver(function (entries, appearOnScrollObserver) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        return;
-      } else {
-        entry.target.classList.add('appear');
-        appearOnScrollObserver.unobserve(entry.target);
-      }
-    });
-  }, appearOnScrollOptions);
-  faders.forEach(fader => {
-    appearOnScrollObserver.observe(fader);
-  });
-  const lazyImages = document.querySelectorAll('[data-src]');
-  const lazyImagesOptions = {
-    threshold: 0,
-    rootMargin: "0px 0px 300px 0px"
-  };
-
-  function preloadImage(img) {
-    const src = img.getAttribute("data-src");
+  var preloadImage = function preloadImage(img) {
+    var src = img.getAttribute("data-src");
 
     if (!src) {
       return;
     }
 
     img.src = src;
-  }
+  };
 
-  const lazyImagesObserver = new IntersectionObserver((entries, lazyImagesObserver) => {
-    entries.forEach(entry => {
+  var appearOnScrollOptions = {
+    threshold: 0.1
+  };
+  var appearOnScrollObserver = new IntersectionObserver(function (entries, appearOnScrollObserver) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) {
+        return;
+      } else {
+        entry.target.classList.add("appear");
+        appearOnScrollObserver.unobserve(entry.target);
+      }
+    });
+  }, appearOnScrollOptions);
+  faders.forEach(function (fader) {
+    appearOnScrollObserver.observe(fader);
+  });
+  var lazyImages = document.querySelectorAll("[data-src]");
+  var lazyImagesOptions = {
+    threshold: 0,
+    rootMargin: "0px 0px 300px 0px"
+  };
+  var lazyImagesObserver = new IntersectionObserver(function (entries, lazyImagesObserver) {
+    entries.forEach(function (entry) {
       if (!entry.isIntersecting) {
         return;
       } else {
@@ -247,12 +212,12 @@ if ("IntersectionObserver" in window) {
       }
     });
   }, lazyImagesOptions);
-  lazyImages.forEach(image => {
+  lazyImages.forEach(function (image) {
     lazyImagesObserver.observe(image);
   });
 } else {
-  const lazyLoad = function () {
-    let active = false;
+  var lazyLoad = function lazyLoad() {
+    var active = false;
 
     if (active === false) {
       active = true;
@@ -281,12 +246,11 @@ if ("IntersectionObserver" in window) {
   window.addEventListener("resize", lazyLoad);
   window.addEventListener("orientationchange", lazyLoad);
 }
-
-;
 /* Encryption function */
 
 /* The anchor element should look like exactly this:
 <a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> */
+
 
 function erot13(s) {
   return (s ? s : this).split("").map(function (_) {
@@ -341,19 +305,20 @@ window.addEventListener("load", erot13_onload);
 //   document.location.href = linkString;
 // }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const slidetime = 500;
-  const bckButton = document.querySelector(".arrow.left");
-  const forwardButton = document.querySelector(".arrow.right");
-  const allSlides = [...document.querySelectorAll(".slide")];
-  let clickable = true;
-  let active = null;
-  let newActive = null;
+document.addEventListener("DOMContentLoaded", function () {
+  var slidetime = 500;
+  var bckButton = document.querySelector(".arrow.left");
+  var forwardButton = document.querySelector(".arrow.right");
+
+  var allSlides = _toConsumableArray(document.querySelectorAll(".slide"));
+
+  var clickable = true;
+  var active = null;
+  var newActive = null;
 
   function initSlider() {
-    allSlides.forEach(slide => {
-      slide.setAttribute("style", `transition: transform ${slidetime}ms ease;
-                   animation-duration: ${slidetime}ms`);
+    allSlides.forEach(function (slide) {
+      slide.setAttribute("style", "transition: transform ".concat(slidetime, "ms ease;\n                   animation-duration: ").concat(slidetime, "ms"));
     });
   }
 
@@ -361,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (clickable) {
       clickable = false;
       active = document.querySelector(".activeSlide");
-      const activeSlideIndex = allSlides.indexOf(active);
+      var activeSlideIndex = allSlides.indexOf(active);
 
       if (forward) {
         newActive = allSlides[(activeSlideIndex + 1) % allSlides.length];
@@ -375,8 +340,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  allSlides.forEach(slide => {
-    slide.addEventListener("transitionend", () => {
+  allSlides.forEach(function (slide) {
+    slide.addEventListener("transitionend", function () {
       if (slide === active && !clickable) {
         clickable = true;
         active.className = "slide";
@@ -384,15 +349,136 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }); //Event Listeners
 
-  forwardButton.addEventListener("click", () => {
+  forwardButton.addEventListener("click", function () {
     changeSlide(true);
   });
-  bckButton.addEventListener("click", () => {
+  bckButton.addEventListener("click", function () {
     changeSlide(false);
   }); //Init the slider
 
   initSlider();
 });
+
+/***/ }),
+
+/***/ "./src/js/navigation.js":
+/*!******************************!*\
+  !*** ./src/js/navigation.js ***!
+  \******************************/
+/*! exports provided: stretchyNav, intersectionObserverForNav */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stretchyNav", function() { return stretchyNav; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "intersectionObserverForNav", function() { return intersectionObserverForNav; });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* =========== IMPORTS ========== */
+
+/* ============ CODE =========== */
+
+var stretchyNav = function stretchyNav() {
+  /* Opening navigation by clikcing nav trigger
+  and closing with nav trigger & outside click. */
+  if (Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".stretchynav_trigger")) {
+    var nav = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".stretchynav");
+    var navEl = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".stretchynav_trigger");
+    navEl.addEventListener("click", function (e) {
+      e.preventDefault();
+      nav.classList.toggle("nav-is-visible");
+    });
+    document.addEventListener("click", function (e) {
+      !e.target.matches(".stretchynav_trigger") && !e.target.matches(".stretchynav_trigger span") && nav.classList.remove("nav-is-visible");
+    });
+  }
+};
+var intersectionObserverForNav = function intersectionObserverForNav() {
+  /* Intersection Observer API:
+     Changing navigation background color depending on scroll */
+  // const nav = qs(".stretchynav");
+  // const visibleNav = qs(".nav-is-visible");
+  var stretchynavBg = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".stretchynav_bg");
+  var projectBg = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".project_background");
+  var sections = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])("article");
+  var listItemSpan = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".a_item span");
+  var listItem = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".a_item");
+
+  function liHover(disp, padding) {
+    for (var i = 0; i < listItemSpan.length; i++) {
+      listItemSpan[i].style.display = disp;
+      listItem[i].style.padding = padding;
+    }
+  }
+
+  var heroSectionOptions = {
+    rootMargin: "-270px 0px 0px 0px",
+    threshold: 0
+  };
+  var heroSectionObserver = new IntersectionObserver(function (entries, heroSectionObserver) {
+    entries.forEach(function (entry) {
+      if (entry.target.className === "hero") {
+        if (!entry.isIntersecting) {
+          stretchynavBg.classList.add("js-nav-scrolled");
+          liHover("none", 0);
+        } else {
+          stretchynavBg.classList.remove("js-nav-scrolled");
+          liHover("block", "0 calc(1em + 60px) 0 1em");
+        }
+      }
+    });
+  }, heroSectionOptions);
+  sections.forEach(function (section) {
+    heroSectionObserver.observe(section);
+  });
+  projectBg.forEach(function (bg) {
+    heroSectionObserver.observe(bg);
+  });
+};
+
+/***/ }),
+
+/***/ "./src/js/utils.js":
+/*!*************************!*\
+  !*** ./src/js/utils.js ***!
+  \*************************/
+/*! exports provided: qs, qsa, bid, bcn, btn, cl */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "qs", function() { return qs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "qsa", function() { return qsa; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bid", function() { return bid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bcn", function() { return bcn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "btn", function() { return btn; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cl", function() { return cl; });
+/* ======================================
+=============== UTILS ===================
+======================================= */
+
+/* ============ Selector Functions ========== */
+function qs(selector) {
+  return document.querySelector(selector);
+}
+function qsa(selector) {
+  return document.querySelectorAll(selector);
+}
+function bid(selector) {
+  return document.getElementById(selector);
+}
+function bcn(selector) {
+  return document.getElementsByClassName(selector);
+}
+function btn(selector) {
+  return document.getElementsByTagName(selector);
+}
+/* =============== Console Log ================== */
+
+function cl() {
+  var _console;
+
+  return (_console = console).log.apply(_console, arguments);
+}
 
 /***/ })
 

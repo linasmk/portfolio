@@ -1,4 +1,5 @@
-**/gulp-dev/node_modules
+**/node_modules
 
 # Windows thumbnail cache files
 Thumbs.db
+node_modules

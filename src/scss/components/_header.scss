@@ -7,11 +7,11 @@
 
 .stretchynav {
   position: fixed;
-  z-index: 12;
-  top: 18px;
+  z-index: zIndex-layer-3(5);
+  top: pxToRem(18);
   right: 3%;
   pointer-events: none;
-  @extend %noHighlightAndSelect;
+  @include noHighlightAndSelect;
   &.nav-is-visible {
     pointer-events: auto;
   }

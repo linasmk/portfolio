@@ -1,0 +1,37 @@
+/* ====================================
+========== Helper Classes ==========
+======================================= */
+.h-input-styles {
+	padding: pxToRem(10) pxToRem(15);
+	border: none;
+	border-radius: pxToRem($b-radius);
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.h-btn-styles {
+	padding: pxToRem(10) pxToRem(10);
+	border: none;
+	text-align: center;
+	display: block;
+	transition: background-color .3s ease-in-out;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+	&:focus,
+	&:hover {
+		outline: none;
+	}
+}
+
+/* ==============================================
+================ Media Queries ===================
+================================================ */
+@media (min-width: pxToRem(768)) {}
+
+@media (min-width: pxToRem(1024)) {}
+
+@media (min-width: pxToRem(1400)) {}

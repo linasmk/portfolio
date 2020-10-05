@@ -1,0 +1,20 @@
+/* ============= Functions ============== */
+
+/* ===== Calculate pixels to rem ===== */
+@function pxToRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+/* ===== Set z-index layer ===== */
+@function zIndex-layer-1($size) {
+  $newSize: $size;
+  @return $newSize;
+}
+@function zIndex-layer-2($size) {
+  $newSize: $size + 10;
+  @return $newSize;
+}
+@function zIndex-layer-3($size) {
+  $newSize: $size + 20;
+  @return $newSize;
+}

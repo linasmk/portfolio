@@ -1,60 +1,18 @@
-// Opening navigation by clikcing nav trigger
-// and closing with nav trigger & outside click.
-if (document.querySelector(".stretchynav_trigger")) {
-  const nav = document.querySelector(".stretchynav");
-  const navEl = document.querySelector(".stretchynav_trigger");
-  navEl.addEventListener("click", (e) => {
-    e.preventDefault();
-    nav.classList.toggle("nav-is-visible");
-  });
-  document.addEventListener("click", function(e) {
-    !e.target.matches(".stretchynav_trigger") && !e.target.matches(".stretchynav_trigger span") && nav.classList.remove("nav-is-visible");
-  });
-}
-if ("IntersectionObserver" in window) {
-  // Intersection Observer API
-  // Changing navigation bg color depending on scroll
-  const stretchynavBg = document.querySelector(".stretchynav_bg");
-  const projectBg = document.querySelectorAll(".project_background");
-  const sections = document.querySelectorAll("article");
-  const listAnchor = document.querySelectorAll(".a_item span");
+/* =========== IMPORTS ========== */
+import { stretchyNav, intersectionObserverForNav } from "./navigation";
+import { cl } from "./utils";
+/* ============ CODE =========== */
+stretchyNav();
+intersectionObserverForNav();
 
-  function liHover(disp) {
-    for (let i = 0; i < listAnchor.length; i++) {
-      listAnchor[i].style.display = disp;
-    }
-  }
-  const heroSectionOptions = {
-    rootMargin: "-270px 0px 0px 0px",
-    threshold: 0,
-  };
-  const heroSectionObserver = new IntersectionObserver(function(entries, heroSectionObserver) {
-    entries.forEach((entry) => {
-      if (entry.target.className === "hero") {
-        if (!entry.isIntersecting) {
-          stretchynavBg.classList.add("nav-scrolled");
-          liHover("none");
-        } else {
-          stretchynavBg.classList.remove("nav-scrolled");
-          liHover("block");
-        }
-      }
-    });
-  }, heroSectionOptions);
-  sections.forEach((section) => {
-    heroSectionObserver.observe(section);
-  });
-  projectBg.forEach((bg) => {
-    heroSectionObserver.observe(bg);
-  });
-}
 // Smooth scroll
 const listItems = document.querySelectorAll(".a_item");
+
 const heroLink = document.querySelector(".hero_link");
 heroLink.addEventListener("click", (e) => {
   smoothScroll(e);
 });
-Array.from(listItems).forEach(function(listItem) {
+Array.from(listItems).forEach(function (listItem) {
   listItem.addEventListener("click", (e) => {
     const item = e.target;
     if (item.textContent === "About Me") {
@@ -71,7 +29,10 @@ Array.from(listItems).forEach(function(listItem) {
 
 function smoothScroll(e) {
   e.preventDefault();
-  const targetId = e.currentTarget.getAttribute("href") === "#" ? "header" : e.currentTarget.getAttribute("href");
+  const targetId =
+    e.currentTarget.getAttribute("href") === "#"
+      ? "header"
+      : e.currentTarget.getAttribute("href");
   const targetPosition = document.querySelector(targetId).offsetTop;
   const startPosition = window.pageYOffset;
   const distance = targetPosition - startPosition;
@@ -82,7 +43,10 @@ function smoothScroll(e) {
   function step(timestamp) {
     if (!start) start = timestamp;
     const progress = timestamp - start;
-    window.scrollTo(0, easeInOutQuad(progress, startPosition, distance, duration));
+    window.scrollTo(
+      0,
+      easeInOutQuad(progress, startPosition, distance, duration)
+    );
     if (progress < duration) window.requestAnimationFrame(step);
   }
 
@@ -97,32 +61,36 @@ function smoothScroll(e) {
     return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 }
-const faders = document.querySelectorAll('.fade_in');
-const slideOut = document.querySelector('.slide_out');
+const faders = document.querySelectorAll(".fade_in");
+const slideOut = document.querySelector(".slide_out");
 if (slideOut) {
-  slideOut.classList.add('run');
+  slideOut.classList.add("run");
 }
 if ("IntersectionObserver" in window) {
   const appearOnScrollOptions = {
-    threshold: .1
+    threshold: 0.1,
   };
-  const appearOnScrollObserver = new IntersectionObserver(function(entries, appearOnScrollObserver) {
-    entries.forEach(entry => {
+  const appearOnScrollObserver = new IntersectionObserver(function (
+    entries,
+    appearOnScrollObserver
+  ) {
+    entries.forEach((entry) => {
       if (!entry.isIntersecting) {
         return;
       } else {
-        entry.target.classList.add('appear');
+        entry.target.classList.add("appear");
         appearOnScrollObserver.unobserve(entry.target);
       }
     });
-  }, appearOnScrollOptions);
-  faders.forEach(fader => {
+  },
+  appearOnScrollOptions);
+  faders.forEach((fader) => {
     appearOnScrollObserver.observe(fader);
   });
-  const lazyImages = document.querySelectorAll('[data-src]');
+  const lazyImages = document.querySelectorAll("[data-src]");
   const lazyImagesOptions = {
     threshold: 0,
-    rootMargin: "0px 0px 300px 0px"
+    rootMargin: "0px 0px 300px 0px",
   };
 
   function preloadImage(img) {
@@ -132,27 +100,34 @@ if ("IntersectionObserver" in window) {
     }
     img.src = src;
   }
-  const lazyImagesObserver = new IntersectionObserver((entries, lazyImagesObserver) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) {
-        return;
-      } else {
-        preloadImage(entry.target);
-        lazyImagesObserver.unobserve(entry.target);
-      }
-    });
-  }, lazyImagesOptions);
-  lazyImages.forEach(image => {
+  const lazyImagesObserver = new IntersectionObserver(
+    (entries, lazyImagesObserver) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          preloadImage(entry.target);
+          lazyImagesObserver.unobserve(entry.target);
+        }
+      });
+    },
+    lazyImagesOptions
+  );
+  lazyImages.forEach((image) => {
     lazyImagesObserver.observe(image);
   });
 } else {
-  const lazyLoad = function() {
+  const lazyLoad = function () {
     let active = false;
     if (active === false) {
       active = true;
-      setTimeout(function() {
-        faders.forEach(function(fader) {
-          if ((fader.getBoundingClientRect().top <= window.innerHeight && fader.getBoundingClientRect().bottom >= 0) && getComputedStyle(fader).display !== "none") {
+      setTimeout(function () {
+        faders.forEach(function (fader) {
+          if (
+            fader.getBoundingClientRect().top <= window.innerHeight &&
+            fader.getBoundingClientRect().bottom >= 0 &&
+            getComputedStyle(fader).display !== "none"
+          ) {
             fader.dataset.src = fader.src;
             fader.dataset.srcset = fader.src;
             fader.classList.add("appear");
@@ -170,17 +145,20 @@ if ("IntersectionObserver" in window) {
   document.addEventListener("scroll", lazyLoad);
   window.addEventListener("resize", lazyLoad);
   window.addEventListener("orientationchange", lazyLoad);
-};
+}
 /* Encryption function */
 /* The anchor element should look like exactly this:
 <a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> */
 function erot13(s) {
-  return (s ? s : this).split("").map(function(_) {
-    if (!_.match(/[A-za-z]/)) return _;
-    var c = Math.floor(_.charCodeAt(0) / 97);
-    var k = (_.toLowerCase().charCodeAt(0) - 83) % 26 || 26;
-    return String.fromCharCode(k + ((c == 0) ? 64 : 96));
-  }).join("");
+  return (s ? s : this)
+    .split("")
+    .map(function (_) {
+      if (!_.match(/[A-za-z]/)) return _;
+      var c = Math.floor(_.charCodeAt(0) / 97);
+      var k = (_.toLowerCase().charCodeAt(0) - 83) % 26 || 26;
+      return String.fromCharCode(k + (c == 0 ? 64 : 96));
+    })
+    .join("");
 }
 
 function erot13_onload(event) {
@@ -232,9 +210,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let newActive = null;
 
   function initSlider() {
-    allSlides.forEach(slide => {
-      slide.setAttribute("style", `transition: transform ${slidetime}ms ease;
-                   animation-duration: ${slidetime}ms`);
+    allSlides.forEach((slide) => {
+      slide.setAttribute(
+        "style",
+        `transition: transform ${slidetime}ms ease;
+                   animation-duration: ${slidetime}ms`
+      );
     });
   }
 
@@ -248,14 +229,16 @@ document.addEventListener("DOMContentLoaded", () => {
         active.classList.add("slideOutLeft");
         newActive.classList.add("slideInRight", "activeSlide");
       } else {
-        newActive = allSlides[
-          (activeSlideIndex - 1 + allSlides.length) % allSlides.length];
+        newActive =
+          allSlides[
+            (activeSlideIndex - 1 + allSlides.length) % allSlides.length
+          ];
         active.classList.add("slideOutRight");
         newActive.classList.add("slideInLeft", "activeSlide");
       }
     }
   }
-  allSlides.forEach(slide => {
+  allSlides.forEach((slide) => {
     slide.addEventListener("transitionend", () => {
       if (slide === active && !clickable) {
         clickable = true;
