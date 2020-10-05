@@ -86,6 +86,55 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/js/email-obfuscation.js":
+/*!*************************************!*\
+  !*** ./src/js/email-obfuscation.js ***!
+  \*************************************/
+/*! exports provided: emailObfuscator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emailObfuscator", function() { return emailObfuscator; });
+/* =========== IMPORTS ========== */
+// Smooth scroll
+function emailObfuscator() {
+  /* Encryption function */
+
+  /* The anchor element should look exactly like this:
+  <a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> */
+  function erot13(s) {
+    return (s ? s : this).split("").map(function (_) {
+      if (!_.match(/[A-za-z]/)) return _;
+      var c = Math.floor(_.charCodeAt(0) / 97);
+      var k = (_.toLowerCase().charCodeAt(0) - 83) % 26 || 26;
+      return String.fromCharCode(k + (c == 0 ? 64 : 96));
+    }).join("");
+  }
+
+  function erot13_onload(event) {
+    var elements = window.document.querySelectorAll("a[data-erot13]");
+
+    for (var j = 0; j < elements.length; j++) {
+      var element = elements[j];
+      var email = element.dataset.erot13;
+      var overwrite = element.dataset.erot13Overwrite !== undefined;
+
+      if (email !== undefined) {
+        element.href = "mailto:" + erot13(email);
+
+        if (overwrite) {
+          element.innerHTML = erot13(email);
+        }
+      }
+    }
+  }
+
+  window.addEventListener("load", erot13_onload);
+}
+
+/***/ }),
+
 /***/ "./src/js/index.js":
 /*!*************************!*\
   !*** ./src/js/index.js ***!
@@ -96,7 +145,40 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigation */ "./src/js/navigation.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* harmony import */ var _smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./smooth-scroll */ "./src/js/smooth-scroll.js");
+/* harmony import */ var _lazy_loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lazy-loading */ "./src/js/lazy-loading.js");
+/* harmony import */ var _email_obfuscation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./email-obfuscation */ "./src/js/email-obfuscation.js");
+/* harmony import */ var _infinite_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./infinite-slider */ "./src/js/infinite-slider.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* =========== IMPORTS ========== */
+
+
+
+
+
+
+/* ============ CODE =========== */
+
+Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["stretchyNav"])();
+Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["intersectionObserverForNav"])();
+Object(_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__["smoothScrollWrapper"])();
+Object(_lazy_loading__WEBPACK_IMPORTED_MODULE_2__["lazyLoader"])();
+Object(_email_obfuscation__WEBPACK_IMPORTED_MODULE_3__["emailObfuscator"])();
+Object(_infinite_slider__WEBPACK_IMPORTED_MODULE_4__["infiniteSlider"])();
+
+/***/ }),
+
+/***/ "./src/js/infinite-slider.js":
+/*!***********************************!*\
+  !*** ./src/js/infinite-slider.js ***!
+  \***********************************/
+/*! exports provided: infiniteSlider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "infiniteSlider", function() { return infiniteSlider; });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -107,257 +189,165 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /* =========== IMPORTS ========== */
 
+/* =========== Code ========== */
 
-/* ============ CODE =========== */
+function infiniteSlider() {
+  document.addEventListener("DOMContentLoaded", function () {
+    var slidetime = 500;
+    var bckButton = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".arrow.left");
+    var forwardButton = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".arrow.right");
 
-Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["stretchyNav"])();
-Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["intersectionObserverForNav"])(); // Smooth scroll
+    var allSlides = _toConsumableArray(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".slide"));
 
-var listItems = document.querySelectorAll(".a_item");
-var heroLink = document.querySelector(".hero_link");
-heroLink.addEventListener("click", function (e) {
-  smoothScroll(e);
-});
-Array.from(listItems).forEach(function (listItem) {
-  listItem.addEventListener("click", function (e) {
-    var item = e.target;
+    var clickable = true;
+    var active = null;
+    var newActive = null;
 
-    if (item.textContent === "About Me") {
-      smoothScroll(e);
-    } else if (item.textContent === "My Stack") {
-      smoothScroll(e);
-    } else if (item.textContent === "Projects") {
-      smoothScroll(e);
-    } else if (item.textContent === "Contact") {
-      smoothScroll(e);
-    }
-  });
-});
-
-function smoothScroll(e) {
-  e.preventDefault();
-  var targetId = e.currentTarget.getAttribute("href") === "#" ? "header" : e.currentTarget.getAttribute("href");
-  var targetPosition = document.querySelector(targetId).offsetTop;
-  var startPosition = window.pageYOffset;
-  var distance = targetPosition - startPosition;
-  var duration = 500;
-  var start = null;
-  window.requestAnimationFrame(step);
-
-  function step(timestamp) {
-    if (!start) start = timestamp;
-    var progress = timestamp - start;
-    window.scrollTo(0, easeInOutQuad(progress, startPosition, distance, duration));
-    if (progress < duration) window.requestAnimationFrame(step);
-  }
-
-  function linear(t, b, c, d) {
-    return c * t / d + b;
-  }
-
-  function easeInOutQuad(t, b, c, d) {
-    t /= d / 2;
-    if (t < 1) return c / 2 * t * t + b;
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-  }
-}
-
-var faders = document.querySelectorAll(".fade_in");
-var slideOut = document.querySelector(".slide_out");
-
-if (slideOut) {
-  slideOut.classList.add("run");
-}
-
-if ("IntersectionObserver" in window) {
-  var preloadImage = function preloadImage(img) {
-    var src = img.getAttribute("data-src");
-
-    if (!src) {
-      return;
+    function initSlider() {
+      allSlides.forEach(function (slide) {
+        slide.setAttribute("style", "transition: transform ".concat(slidetime, "ms ease;\n                   animation-duration: ").concat(slidetime, "ms"));
+      });
     }
 
-    img.src = src;
-  };
+    function changeSlide(forward) {
+      if (clickable) {
+        clickable = false;
+        active = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".activeSlide");
+        var activeSlideIndex = allSlides.indexOf(active);
 
-  var appearOnScrollOptions = {
-    threshold: 0.1
-  };
-  var appearOnScrollObserver = new IntersectionObserver(function (entries, appearOnScrollObserver) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) {
-        return;
-      } else {
-        entry.target.classList.add("appear");
-        appearOnScrollObserver.unobserve(entry.target);
-      }
-    });
-  }, appearOnScrollOptions);
-  faders.forEach(function (fader) {
-    appearOnScrollObserver.observe(fader);
-  });
-  var lazyImages = document.querySelectorAll("[data-src]");
-  var lazyImagesOptions = {
-    threshold: 0,
-    rootMargin: "0px 0px 300px 0px"
-  };
-  var lazyImagesObserver = new IntersectionObserver(function (entries, lazyImagesObserver) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) {
-        return;
-      } else {
-        preloadImage(entry.target);
-        lazyImagesObserver.unobserve(entry.target);
-      }
-    });
-  }, lazyImagesOptions);
-  lazyImages.forEach(function (image) {
-    lazyImagesObserver.observe(image);
-  });
-} else {
-  var lazyLoad = function lazyLoad() {
-    var active = false;
-
-    if (active === false) {
-      active = true;
-      setTimeout(function () {
-        faders.forEach(function (fader) {
-          if (fader.getBoundingClientRect().top <= window.innerHeight && fader.getBoundingClientRect().bottom >= 0 && getComputedStyle(fader).display !== "none") {
-            fader.dataset.src = fader.src;
-            fader.dataset.srcset = fader.src;
-            fader.classList.add("appear");
-          }
-
-          if (faders.length === 0) {
-            document.removeEventListener("scroll", lazyLoad);
-            window.removeEventListener("resize", lazyLoad);
-            window.removeEventListener("orientationchange", lazyLoad);
-          }
-        }); //faders.forEach
-
-        active = false;
-      }, 500); //setTimeout function
-    }
-  }; //lazyLoad function
-
-
-  document.addEventListener("scroll", lazyLoad);
-  window.addEventListener("resize", lazyLoad);
-  window.addEventListener("orientationchange", lazyLoad);
-}
-/* Encryption function */
-
-/* The anchor element should look like exactly this:
-<a data-erot13="yvanf.znpxbavf@tznvy.pbz"><span class="email"></span>Email Me</a> */
-
-
-function erot13(s) {
-  return (s ? s : this).split("").map(function (_) {
-    if (!_.match(/[A-za-z]/)) return _;
-    var c = Math.floor(_.charCodeAt(0) / 97);
-    var k = (_.toLowerCase().charCodeAt(0) - 83) % 26 || 26;
-    return String.fromCharCode(k + (c == 0 ? 64 : 96));
-  }).join("");
-}
-
-function erot13_onload(event) {
-  var elements = window.document.querySelectorAll("a[data-erot13]");
-
-  for (var j = 0; j < elements.length; j++) {
-    var element = elements[j];
-    var email = element.dataset.erot13;
-    var overwrite = element.dataset.erot13Overwrite !== undefined;
-
-    if (email !== undefined) {
-      element.href = "mailto:" + erot13(email);
-
-      if (overwrite) {
-        element.innerHTML = erot13(email);
+        if (forward) {
+          newActive = allSlides[(activeSlideIndex + 1) % allSlides.length];
+          active.classList.add("slideOutLeft");
+          newActive.classList.add("slideInRight", "activeSlide");
+        } else {
+          newActive = allSlides[(activeSlideIndex - 1 + allSlides.length) % allSlides.length];
+          active.classList.add("slideOutRight");
+          newActive.classList.add("slideInLeft", "activeSlide");
+        }
       }
     }
-  }
-}
 
-window.addEventListener("load", erot13_onload);
-/* Encryption function */
-// function encRot13(mailString) {
-//   var mapArray = [];
-//   var elements = "abcdefghijklmnopqrstuvwxyz";
-//   var outp = "";
-//   for (i = 0; i < elements.length; i++) {
-//     var x = elements.charAt(i);
-//     var y = elements.charAt((i + 13) % 26);
-//     mapArray[x] = y;
-//     mapArray[x.toUpperCase()] = y.toUpperCase();
-//   }
-//   for (i = 0; i < mailString.length; i++) {
-//     var c = mailString.charAt(i)
-//     outp += (c >= 'A' && c <= 'z' || c >= 'a' && c <= '\' ? mapArray [c] : c)
-// }
-//   return outp;
-// }
-// /* Concatenating and redirection mailstring function */
-// function decryptMail(encString) {
-//   var linkString = "mailto:";
-//   var addressString = encRot13(encString);
-//   linkString += addressString;
-//   document.location.href = linkString;
-// }
-
-document.addEventListener("DOMContentLoaded", function () {
-  var slidetime = 500;
-  var bckButton = document.querySelector(".arrow.left");
-  var forwardButton = document.querySelector(".arrow.right");
-
-  var allSlides = _toConsumableArray(document.querySelectorAll(".slide"));
-
-  var clickable = true;
-  var active = null;
-  var newActive = null;
-
-  function initSlider() {
     allSlides.forEach(function (slide) {
-      slide.setAttribute("style", "transition: transform ".concat(slidetime, "ms ease;\n                   animation-duration: ").concat(slidetime, "ms"));
+      slide.addEventListener("transitionend", function () {
+        if (slide === active && !clickable) {
+          clickable = true;
+          active.className = "slide";
+        }
+      });
+    }); //Event Listeners
+
+    forwardButton.addEventListener("click", function () {
+      changeSlide(true);
     });
-  }
+    bckButton.addEventListener("click", function () {
+      changeSlide(false);
+    }); //Init the slider
 
-  function changeSlide(forward) {
-    if (clickable) {
-      clickable = false;
-      active = document.querySelector(".activeSlide");
-      var activeSlideIndex = allSlides.indexOf(active);
-
-      if (forward) {
-        newActive = allSlides[(activeSlideIndex + 1) % allSlides.length];
-        active.classList.add("slideOutLeft");
-        newActive.classList.add("slideInRight", "activeSlide");
-      } else {
-        newActive = allSlides[(activeSlideIndex - 1 + allSlides.length) % allSlides.length];
-        active.classList.add("slideOutRight");
-        newActive.classList.add("slideInLeft", "activeSlide");
-      }
-    }
-  }
-
-  allSlides.forEach(function (slide) {
-    slide.addEventListener("transitionend", function () {
-      if (slide === active && !clickable) {
-        clickable = true;
-        active.className = "slide";
-      }
-    });
-  }); //Event Listeners
-
-  forwardButton.addEventListener("click", function () {
-    changeSlide(true);
+    initSlider();
   });
-  bckButton.addEventListener("click", function () {
-    changeSlide(false);
-  }); //Init the slider
+}
 
-  initSlider();
-});
+/***/ }),
+
+/***/ "./src/js/lazy-loading.js":
+/*!********************************!*\
+  !*** ./src/js/lazy-loading.js ***!
+  \********************************/
+/*! exports provided: lazyLoader */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lazyLoader", function() { return lazyLoader; });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* =========== IMPORTS ========== */
+ // Lazy Loading
+
+function lazyLoader() {
+  var faders = document.querySelectorAll(".fade_in");
+  var slideOut = document.querySelector(".slide_out");
+
+  if (slideOut) {
+    slideOut.classList.add("run");
+  }
+
+  if ("IntersectionObserver" in window) {
+    var preloadImage = function preloadImage(img) {
+      var src = img.getAttribute("data-src");
+
+      if (!src) {
+        return;
+      }
+
+      img.src = src;
+    };
+
+    var appearOnScrollOptions = {
+      threshold: 0.1
+    };
+    var appearOnScrollObserver = new IntersectionObserver(function (entries, appearOnScrollObserver) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          entry.target.classList.add("appear");
+          appearOnScrollObserver.unobserve(entry.target);
+        }
+      });
+    }, appearOnScrollOptions);
+    faders.forEach(function (fader) {
+      appearOnScrollObserver.observe(fader);
+    });
+    var lazyImages = document.querySelectorAll("[data-src]");
+    var lazyImagesOptions = {
+      threshold: 0,
+      rootMargin: "0px 0px 300px 0px"
+    };
+    var lazyImagesObserver = new IntersectionObserver(function (entries, lazyImagesObserver) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) {
+          return;
+        } else {
+          preloadImage(entry.target);
+          lazyImagesObserver.unobserve(entry.target);
+        }
+      });
+    }, lazyImagesOptions);
+    lazyImages.forEach(function (image) {
+      lazyImagesObserver.observe(image);
+    });
+  } else {
+    var lazyLoad = function lazyLoad() {
+      var active = false;
+
+      if (active === false) {
+        active = true;
+        setTimeout(function () {
+          faders.forEach(function (fader) {
+            if (fader.getBoundingClientRect().top <= window.innerHeight && fader.getBoundingClientRect().bottom >= 0 && getComputedStyle(fader).display !== "none") {
+              fader.dataset.src = fader.src;
+              fader.dataset.srcset = fader.src;
+              fader.classList.add("appear");
+            }
+
+            if (faders.length === 0) {
+              document.removeEventListener("scroll", lazyLoad);
+              window.removeEventListener("resize", lazyLoad);
+              window.removeEventListener("orientationchange", lazyLoad);
+            }
+          }); //faders.forEach
+
+          active = false;
+        }, 500); //setTimeout function
+      }
+    }; //lazyLoad function
+
+
+    document.addEventListener("scroll", lazyLoad);
+    window.addEventListener("resize", lazyLoad);
+    window.addEventListener("orientationchange", lazyLoad);
+  }
+}
 
 /***/ }),
 
@@ -395,8 +385,6 @@ var stretchyNav = function stretchyNav() {
 var intersectionObserverForNav = function intersectionObserverForNav() {
   /* Intersection Observer API:
      Changing navigation background color depending on scroll */
-  // const nav = qs(".stretchynav");
-  // const visibleNav = qs(".nav-is-visible");
   var stretchynavBg = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".stretchynav_bg");
   var projectBg = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".project_background");
   var sections = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])("article");
@@ -411,8 +399,8 @@ var intersectionObserverForNav = function intersectionObserverForNav() {
   }
 
   var heroSectionOptions = {
-    rootMargin: "-270px 0px 0px 0px",
-    threshold: 0
+    rootMargin: "-250px 0px 0px 0px",
+    threshold: 0.1
   };
   var heroSectionObserver = new IntersectionObserver(function (entries, heroSectionObserver) {
     entries.forEach(function (entry) {
@@ -434,6 +422,74 @@ var intersectionObserverForNav = function intersectionObserverForNav() {
     heroSectionObserver.observe(bg);
   });
 };
+
+/***/ }),
+
+/***/ "./src/js/smooth-scroll.js":
+/*!*********************************!*\
+  !*** ./src/js/smooth-scroll.js ***!
+  \*********************************/
+/*! exports provided: smoothScrollWrapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "smoothScrollWrapper", function() { return smoothScrollWrapper; });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+/* =========== IMPORTS ========== */
+ // Smooth scroll
+
+function smoothScrollWrapper() {
+  var listItems = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".a_item");
+  var heroLink = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".hero_link");
+  heroLink.addEventListener("click", function (e) {
+    smoothScroll(e);
+  });
+  Array.from(listItems).forEach(function (listItem) {
+    listItem.addEventListener("click", function (e) {
+      var item = e.target;
+
+      if (item.textContent === "About Me") {
+        smoothScroll(e);
+      } else if (item.textContent === "My Stack") {
+        smoothScroll(e);
+      } else if (item.textContent === "Projects") {
+        smoothScroll(e);
+      } else if (item.textContent === "Contact") {
+        smoothScroll(e);
+      }
+    });
+  });
+
+  function smoothScroll(e) {
+    e.preventDefault();
+    var targetId = e.currentTarget.getAttribute("href") === "#" ? "header" : e.currentTarget.getAttribute("href");
+    var targetPosition = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(targetId).offsetTop;
+    var startPosition = window.pageYOffset;
+    var distance = targetPosition - startPosition;
+    var duration = 500;
+    var start = null;
+    window.requestAnimationFrame(step);
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = timestamp - start;
+      window.scrollTo(0, easeInOutQuad(progress, startPosition, distance, duration));
+      if (progress < duration) window.requestAnimationFrame(step);
+    }
+
+    function linear(t, b, c, d) {
+      return c * t / d + b;
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return c / 2 * t * t + b;
+      t--;
+      return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+  }
+}
 
 /***/ }),
 

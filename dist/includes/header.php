@@ -1,6 +1,6 @@
 <?php global $page; ?>
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 <?php include("head.php"); ?>
 
 <body class="<?php echo $page ?> body">

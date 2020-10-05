@@ -22,8 +22,7 @@ and closing with nav trigger & outside click. */
 export const intersectionObserverForNav = () => {
   /* Intersection Observer API:
      Changing navigation background color depending on scroll */
-  // const nav = qs(".stretchynav");
-  // const visibleNav = qs(".nav-is-visible");
+
   const stretchynavBg = qs(".stretchynav_bg");
   const projectBg = qsa(".project_background");
   const sections = qsa("article");
@@ -37,8 +36,8 @@ export const intersectionObserverForNav = () => {
     }
   }
   const heroSectionOptions = {
-    rootMargin: "-270px 0px 0px 0px",
-    threshold: 0,
+    rootMargin: "-250px 0px 0px 0px",
+    threshold: 0.1,
   };
 
   const heroSectionObserver = new IntersectionObserver(function (
