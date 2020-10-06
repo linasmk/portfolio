@@ -1,11 +1,12 @@
 /* =========== IMPORTS ========== */
 import { qs, qsa } from "./utils";
+
 /* =========== Code ========== */
-export function infiniteSlider() {
+export function infiniteSlider(bckBtn, fwdBtn) {
   document.addEventListener("DOMContentLoaded", () => {
     const slidetime = 500;
-    const bckButton = qs(".arrow.left");
-    const forwardButton = qs(".arrow.right");
+    const bckButton = bckBtn;
+    const forwardButton = fwdBtn;
     const allSlides = [...qsa(".slide")];
     let clickable = true;
     let active = null;

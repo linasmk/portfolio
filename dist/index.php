@@ -44,12 +44,11 @@ $page = 'home';
 	<p class="fade_in">I am a passionate front-end web developer with a soon-to-be 3 years of freelancing experience. I am educated at <a class="link" href="https://www.baaa.dk/programmes/ap-degree/multimedia-design/" target="_blank">Business Academy Aarhus</a> and I continue to live in Denmark, but I provide my services across the EU and beyond.</p>
 
 	<p class="fade_in">You are always welcome to contact me or check my <a href="https://github.com/linasmk">GitHub profile</a>.</p>
+	<p class="fade_in">Do not hesitate to reach out if you need a frontend developer with a responsive design, JavasScript, WordPress, React.js and SEO skillset under his belt. I'm inteterested in both, long-term or small ad hoc projects.</p>
 </article>
 <article id="my_stack" class="my_stack">
 	<h2 class="fade_in">My Stack</h2>
 	<div class="my_stack__icons">
-	
-	
 	<div class="icon-wrapper fade_in"><?php require_once("svg/react_icon.php"); ?></div>
 	<div class="icon-wrapper fade_in"><?php require_once("svg/sass_icon.php"); ?></div>
 	<div class="icon-wrapper fade_in"><?php require_once("svg/redux_icon.php"); ?></div>
@@ -57,40 +56,24 @@ $page = 'home';
 	<div class="icon-wrapper fade_in"><?php require_once("svg/ai_icon.php"); ?></div>
 	<div class="icon-wrapper fade_in"><?php require_once("svg/webpack_icon.php"); ?></div>
 	<div class="icon-wrapper fade_in"><?php require_once("svg/git_icon.php"); ?></div>
-	
 	<div class="icon-wrapper fade_in"><?php require_once("svg/js_icon.php"); ?></div>
-	
-	
-	
-
 	</div>
-
 </article>
 <article id="projects" class="projects">
 	<section class="projects_content">
 		<h2 class="fade_in">Projects</h2>
 	</section>
 	<div class="project_background">
-			<?php require_once("includes/content/carousel.php"); ?>
+			<?php require_once("includes/content/carousel_projects.php"); ?>
   </div><!-- End of project_background -->
 </article>
-
-
-
-<article id="contact" class="contact">
-	<section class="contact_content">
-		<h2 class="fade_in">Contact</h2>
-		<p class="fade_in">You should definitely contact me if you are seeking for a front-end developer with a responsive design, JavasScript, WordPress, React.js and SEO skillset under his belt. Do not hesitate to get in touch for a long-term or small ad hoc projects or if you need any help in making fast loading and neatly written site for your business.</p>
+<article id="prototypes" class="prototypes">
+	<section class="prototypes__content">
+		<h2 class="prototypes__title fade_in">Prototypes</h2>
 	</section>
-	<div class="contact_background">
-		<section class="contact_details fade_in">
-			<a href="tel:+45-42-33-20-88"><span class="danish_flag"></span>+45 42 33 20 88</a>
-			<!-- <a href="tel:+370-672-48029" rel="nofollow"><span class="lithuanian_flag"></span>+370 672 48029</a> -->
-
-			<a href="includes/mailhandler.php"><span class="email"></span>Email Me</a>
-		</section>
-	</div>
-</article>
-
+	<div class="prototypes__background">
+		<?php require_once("includes/content/carousel_prototypes.php"); ?>
+	</div> <!-- End of prototypes_background -->
+</article> 
 
 <?php require_once("includes/footer.php"); ?>

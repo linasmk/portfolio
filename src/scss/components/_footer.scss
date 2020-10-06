@@ -1,16 +1,103 @@
-/* =========== Footer =========== */
-footer {
-  height: 10vh;
+/*! ==================================
+============== FOOTER ================
+==================================== */
+.footer {
+  width: 100%;
+  height: 100%;
+  margin-top: 3rem;
   background: linear-gradient(
     190deg,
     rgba($veryDarkBlue, 0.8),
     rgba(#000034, 0.8) 70%
   );
   @include verticalFlex(center, center);
-  padding: 10rem 2rem;
+  padding: 5rem 0;
 }
-footer p {
+/*! ================ Contacts Section =============*/
+.footer__contact-details {
+  @include containerWidth-sm;
+  @include verticalFlex(center, center);
+}
+.footer__contact-details a {
+  width: 285px;
+  color: $white;
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 1rem 0;
+  position: relative;
+  padding: 2rem 0;
+  opacity: 1;
+  transition: opacity 0.4s;
+  @include horizontalFlex(center, center);
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.footer__contact-details a:nth-child(1) span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 15px 0 0;
+  background-size: 100%;
+  background-position: center -1px;
+  background-repeat: no-repeat;
+  background-image: url(../img/danish_flag.png);
+  background-image: url(../img/danish_flag.webp);
+}
+/*.footer__contact-details a:nth-child(2) span {
+ 	display: block;
+ 	width: 30px;
+	height: 30px;
+	margin: 0 15px 0 0;
+	@include backgroundIMG(url(../img/lithuanian_flag.png),
+		100%,
+		center center);
+}*/
+.footer__contact-details a:nth-child(2) span {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 15px 0 0;
+  background-size: 120%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../img/mail.png);
+  background-image: url(../img/mail.webp);
+}
+/*! ============== Copyright Section ============ */
+.footer__copyright {
+  width: 100%;
+  height: 100%;
+  @include verticalFlex(center, center);
+}
+.footer__copyright-p {
   color: $white;
   text-align: center;
   line-height: 25px;
+}
+/*! ===========================================
+============= Media Queries ==================
+==============================================*/
+@media screen and (min-width: 768px) {
+  .contact_content {
+    @include containerWidth_md;
+  }
+  .footer__contact-details {
+    @include containerWidth-md;
+  }
+}
+@media screen and (min-width: 1250px) {
+  .contact p {
+    max-width: 1250px;
+    width: 100%;
+    margin: 3rem auto;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .contact_content {
+    @include containerWidth_lg;
+  }
+  .footer__contact-details {
+    @include containerWidth-lg;
+  }
 }

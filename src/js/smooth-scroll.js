@@ -16,7 +16,7 @@ export function smoothScrollWrapper() {
         smoothScroll(e);
       } else if (item.textContent === "Projects") {
         smoothScroll(e);
-      } else if (item.textContent === "Contact") {
+      } else if (item.textContent === "Prototypes") {
         smoothScroll(e);
       }
     });

@@ -13,7 +13,7 @@
 				<li><a class="active a_item" href="#about_me"><span>About Me</span></a></li>
 				<li><a class="a_item" href="#my_stack"><span>My Stack</span></a></li>
 				<li><a class="a_item" href="#projects"><span>Projects</span></a></li>
-				<li><a class="a_item" href="#contact"><span>Contact</span></a></li>
+				<li><a class="a_item" href="#prototypes"><span>Prototypes</span></a></li>
 			</ul>
 
 			<span aria-hidden="true" class="stretchynav_bg"></span>

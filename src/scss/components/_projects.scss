@@ -1,4 +1,6 @@
-/* ========== Projects ========== */
+/*! ==================================
+============== PROJECTS ================
+==================================== */
 .projects {
   width: 100%;
 }
@@ -134,7 +136,7 @@
     transform: translateX(0%);
   }
 }
-.controls .arrow {
+.controls .projects-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -184,7 +186,9 @@
 // .controls .slide_indicators li.selected {
 //   background: transparent;
 // }
-/*! =========== Media Queries =========== */
+/*! ==================================
+============== MEDIA QUERIES ================
+==================================== */
 @media screen and (min-width: 500px) {
   .project_description {
     width: 100%;

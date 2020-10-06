@@ -17,6 +17,35 @@
     border-radius: 30px;
   }
 }
+
+.fade_in {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.slide_out {
+  bottom: -100%;
+  opacity: 0;
+  transition: bottom 0.5s ease-in-out, opacity 0.8s ease-in;
+}
+.run {
+  bottom: 10%;
+  opacity: 1;
+  @extend %noHighlightAndSelect;
+}
+.fade_in.appear {
+  opacity: 1;
+}
+
 /* ===============================================
 ============= MEDIA QUERIES ======================
 ================================================= */
+@media screen and (min-width: 500px) and (max-width: 768px) and (orientation: landscape) {
+  .run {
+    bottom: 2%;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 998px) and (orientation: landscape) {
+  .run {
+    bottom: 12%;
+  }
+}

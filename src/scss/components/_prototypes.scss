@@ -1,0 +1,39 @@
+/*! ==================================
+============== PROTOTYPES ================
+==================================== */
+.prototypes {
+  width: 100%;
+}
+.prototypes__content {
+  @include containerWidth_sm;
+}
+.prototypes__title {
+  color: $darkBlue;
+  @extend %txtGradientHeading;
+  text-align: center;
+  font-size: 4rem;
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+.prototypes__background {
+  position: relative;
+  background: linear-gradient(
+    190deg,
+    rgba($darkBlue, 0.4),
+    rgba(#000067, 0.8) 70%
+  );
+  padding: 2rem 0;
+}
+/*! ==================================
+============== MEDIA QUERIES ================
+==================================== */
+@media screen and (min-width: 768px) {
+  .prototypes__content {
+    @include containerWidth_md;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .prototypes__content {
+    @include containerWidth_lg;
+  }
+}

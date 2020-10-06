@@ -139,11 +139,13 @@ function emailObfuscator() {
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/*! no exports provided */
+/*! exports provided: bckButton, forwardButton */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bckButton", function() { return bckButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forwardButton", function() { return forwardButton; });
 /* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navigation */ "./src/js/navigation.js");
 /* harmony import */ var _smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./smooth-scroll */ "./src/js/smooth-scroll.js");
 /* harmony import */ var _lazy_loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lazy-loading */ "./src/js/lazy-loading.js");
@@ -159,12 +161,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /* ============ CODE =========== */
 
+var projectsSlider = {
+  bckButton: Object(_utils__WEBPACK_IMPORTED_MODULE_5__["qs"])(".projects-arrow.left"),
+  forwardButton: Object(_utils__WEBPACK_IMPORTED_MODULE_5__["qs"])(".projects-arrow.right")
+};
+var bckButton = projectsSlider.bckButton,
+    forwardButton = projectsSlider.forwardButton;
+
 Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["stretchyNav"])();
 Object(_navigation__WEBPACK_IMPORTED_MODULE_0__["intersectionObserverForNav"])();
 Object(_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__["smoothScrollWrapper"])();
 Object(_lazy_loading__WEBPACK_IMPORTED_MODULE_2__["lazyLoader"])();
 Object(_email_obfuscation__WEBPACK_IMPORTED_MODULE_3__["emailObfuscator"])();
-Object(_infinite_slider__WEBPACK_IMPORTED_MODULE_4__["infiniteSlider"])();
+Object(_infinite_slider__WEBPACK_IMPORTED_MODULE_4__["infiniteSlider"])(bckButton, forwardButton);
 
 /***/ }),
 
@@ -191,11 +200,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 /* =========== Code ========== */
 
-function infiniteSlider() {
+function infiniteSlider(bckBtn, fwdBtn) {
   document.addEventListener("DOMContentLoaded", function () {
     var slidetime = 500;
-    var bckButton = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".arrow.left");
-    var forwardButton = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".arrow.right");
+    var bckButton = bckBtn;
+    var forwardButton = fwdBtn;
 
     var allSlides = _toConsumableArray(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".slide"));
 
@@ -264,8 +273,8 @@ __webpack_require__.r(__webpack_exports__);
  // Lazy Loading
 
 function lazyLoader() {
-  var faders = document.querySelectorAll(".fade_in");
-  var slideOut = document.querySelector(".slide_out");
+  var faders = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qsa"])(".fade_in");
+  var slideOut = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["qs"])(".slide_out");
 
   if (slideOut) {
     slideOut.classList.add("run");
@@ -455,7 +464,7 @@ function smoothScrollWrapper() {
         smoothScroll(e);
       } else if (item.textContent === "Projects") {
         smoothScroll(e);
-      } else if (item.textContent === "Contact") {
+      } else if (item.textContent === "Prototypes") {
         smoothScroll(e);
       }
     });

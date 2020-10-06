@@ -2,8 +2,8 @@
 import { qs, qsa } from "./utils";
 // Lazy Loading
 export function lazyLoader() {
-  const faders = document.querySelectorAll(".fade_in");
-  const slideOut = document.querySelector(".slide_out");
+  const faders = qsa(".fade_in");
+  const slideOut = qs(".slide_out");
   if (slideOut) {
     slideOut.classList.add("run");
   }
